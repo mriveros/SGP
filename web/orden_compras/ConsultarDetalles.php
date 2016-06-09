@@ -17,7 +17,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-     <title>SGP-INTN-Detalles</title>
+     <title>SGP INTN-Detalles</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->

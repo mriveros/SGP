@@ -16,7 +16,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-   <title>SGP-INTN-Resumen Compras Proveedor</title>
+   <title>SGP INTN-Resumen Compras Proveedor</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -66,7 +66,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Informes - <small>SGP-INTN</small></h1>
+                      <h1 class="page-header">Informes - <small>SGP INTN</small></h1>
                 </div>	
             </div>
             <!-- /.row -->

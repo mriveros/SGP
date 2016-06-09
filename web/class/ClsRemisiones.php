@@ -2,7 +2,7 @@
 /*
  * Autor: Marcos A. Riveros.
  * Año: 2015
- * Sistema de Compras y Pagos SGP-INTN
+ * Sistema de Compras y Pagos SGP INTN
  */
 session_start();
 $codusuario=  $_SESSION["codigo_usuario"];
@@ -48,6 +48,6 @@ $codusuario=  $_SESSION["codigo_usuario"];
             pg_query("delete from remisiones WHERE rem_cod=$codigoElim")or die('<script type="text/javascript">
 		alert("La Remisión ya ha sido utilizado. No se puede Eliminar");
                 window.location="http://localhost/SGP/web/remisiones/ABMremision.php";
-		</script>');;
+		</script>');
             header("Refresh:0; url=http://localhost/SGP/web/remisiones/ABMremision.php");
 	}

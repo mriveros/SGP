@@ -16,7 +16,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SGP INTN-Dependencias</title>
+    <title>SGP INTN-Entregas</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -54,19 +54,6 @@ $catego=  $_SESSION["categoria_usuario"];
     });
     </script>
 	<script type="text/javascript">
-		function modificar(codigo){
-			$('tr').click(function() {
-			indi = $(this).index();
-                       	var nombre=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
-			var descripcion=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
-                       
-                        //var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
-                        document.getElementById("txtCodigo").value = codigo;
-                        document.getElementById("txtNombreM").value = nombre;
-			document.getElementById("txtDescripcionM").value = descripcion;
-			
-			});
-		};
 		function eliminar(codigo){
 			document.getElementById("txtCodigoE").value = codigo;
 		};
@@ -93,7 +80,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Dependencias - <small>SGP INTN</small></h1>
+                      <h1 class="page-header">Entregas - <small>SGP INTN</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -101,7 +88,7 @@ $catego=  $_SESSION["categoria_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Dependencias
+                            Listado de Entregas
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -110,28 +97,44 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th style='display:none'>Codigo</th>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
+                                            <th>Descripción</th>
+                                            <th>Remisión</th>
+                                            <th>Puesto</th>
+                                            <th>Encargado</th>
+                                            <th>Cantidad</th>
+                                            <th>Inicio</th>
+                                            <th>Fin</th>
+                                            <th>Fecha</th>
                                             <th>Estado</th>
                                             <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select * from dependencias;";
+                    $query = "select en.en_cod, en_des, rem_des,pues_des,enc.en_nom||' '||enc.en_ape as nombre, en.en_cantidad, en.en_nro_inicio,en.en_nro_fin,to_char(en.en_fecha,'DD/MM/YYYY' )as fecha, en.en_activo 
+                        from entrega en,encargado enc,puestos pues, remisiones rem
+                    where en.enc_cod=enc.en_cod
+                    and en.pues_cod=pues.pues_cod
+                    and en.rem_cod=rem.rem_cod;";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
-                        $estado=$row1["dep_activo"];
+                        $estado=$row1["en_activo"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
-                        echo "<tr><td style='display:none'>".$row1["dep_cod"]."</td>";
-                        echo "<td>".$row1["dep_nom"]."</td>";
-                        echo "<td>".$row1["dep_des"]."</td>";
+                        echo "<tr><td style='display:none'>".$row1["en_cod"]."</td>";
+                        echo "<td>".$row1["en_des"]."</td>";
+                        echo "<td>".$row1["rem_des"]."</td>";
+                        echo "<td>".$row1["pues_des"]."</td>";
+                        echo "<td>".$row1["nombre"]."</td>";
+                        echo "<td>".$row1["en_cantidad"]."</td>";
+                        echo "<td>".$row1["en_nro_inicio"]."</td>";
+                        echo "<td>".$row1["en_nro_fin"]."</td>";
+                        echo "<td>".$row1["fecha"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         
-                        <a onclick='modificar(<?php echo $row1["dep_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalmod" role="button">Modificar</a>
-                        <a onclick='eliminar(<?php echo $row1["dep_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
+                       
+                        <a onclick='eliminar(<?php echo $row1["en_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
                         <?php
                         echo "</td></tr>";
                     }
@@ -168,18 +171,84 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsDependencias.php" method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsEntregas.php" method="post" role="form">
 						
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNombreA" class="form-control" id="txtNombreA" placeholder="ingrese nombre"/>
+                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese descripcion"/>
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Remisión</label>
+                                            <div class="col-sm-10">
+                                           <select name="txtRemisionA" class="form-control" id="txtRemisionA" required="true">
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "select rem_cod, rem_des||'| Disponible: '||rem_stock_actual as  remision from remisiones where rem_activo='t'";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Encargado</label>
+                                            <div class="col-sm-10">
+                                           <select name="txtEncargado" class="form-control" id="txtEncargado" required="true">
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select en_cod,en_nom||' '||en_ape from encargado where en_activo='t'";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
+                                            </div>
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Puesto</label>
+                                            <div class="col-sm-10">
+                                           <select name="txtPuestoA" class="form-control" id="txtPuestoA" required="true">
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select pues_cod,pues_Des from puestos where pues_activo='t'";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
                                             </div>
 					</div>
 					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Cantidad</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese una descripcion" />
+                                            <input type="number" name="txtCantidadA" class="form-control" id="txtCantidadA"  required="true"/>
+                                            </div>
+					</div>	
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Nro. Inicio</label>
+                                            <div class="col-sm-10">
+                                            <input type="number" name="txtNroInicioA" class="form-control" id="txtNroInicioA" required="true" />
+                                            </div>
+					</div>	
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Nro. Fin</label>
+                                            <div class="col-sm-10">
+                                            <input type="number" name="txtNroFinA" class="form-control" id="txtNroFinA" required="true" />
                                             </div>
 					</div>	
 				</div>
@@ -193,56 +262,7 @@ $catego=  $_SESSION["categoria_usuario"];
 		</div>
 	</div>
 	
-	<!-- /#MODAL MODIFICACIONES -->
-	<div class="modal fade" id="modalmod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-pencil"></i> Modificar Registro</h3>
-				</div>
-				<!-- Modal Body -->
-				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="modificarform" action="../class/ClsDependencias.php"  method="post" role="form">
-                                        <div class="form-group">
-                                            <div class="col-sm-10">
-                                            <input type="hidden" name="txtCodigo" class="form-control" id="txtCodigo"  />
-                                            </div>
-					</div>
-                                        <div class="form-group">
-                                            <input type="numeric" name="codigo1" class="hide" id="input000" />
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre</label>
-                                            <div class="col-sm-10">
-                                            <input type="text" name="txtNombreM" class="form-control" id="txtNombreM" placeholder="ingrese nombre" />
-                                            </div>
-					</div>
-					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
-                                            <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcionM" class="form-control" id="txtDescripcionM" placeholder="ingrese una descripcion"  />
-                                            </div>
-					</div>
-                                        <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input03">Estado</label>
-                                            <div class="col-sm-10">
-                                            <div class="radio">
-                                            <label><input type="radio" name="txtEstadoM" value="1" checked /> Activo</label>
-                                            <label><input type="radio" name="txtEstadoM" value="0" /> Inactivo</label>
-                                            </div>
-                                            </div>
-					</div>		
-				</div>
-				
-				<!-- Modal Footer -->
-				<div class="modal-footer">
-					<button type="reset" onclick="location.reload();" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-					<button type="submit" name="modificar" class="btn btn-primary">Guardar</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	
 	<!-- /#MODAL ELIMINACIONES -->
 	<div class="modal fade" id="modalbor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -256,7 +276,7 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form class="form-horizontal" name="borrarform" action="../class/ClsDependencias.php" onsubmit="return submitForm();" method="post" role="form">
+                                    <form class="form-horizontal" name="borrarform" action="../class/ClsEntregas.php" onsubmit="return submitForm();" method="post" role="form">
 						<div class="form-group">
 							<input type="numeric" name="txtCodigoE" class="hide" id="txtCodigoE" />
 							<div class="alert alert-danger alert-dismissable col-sm-10 col-sm-offset-1">

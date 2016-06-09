@@ -2,7 +2,7 @@
 /*
  * Autor: Marcos A. Riveros.
  * Año: 2015
- * Sistema de Compras y Pagos SGP-INTN
+ * Sistema de Compras y Pagos SGP INTN
  */
 session_start();
 $codusuario=  $_SESSION["codigo_usuario"];

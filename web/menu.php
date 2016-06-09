@@ -31,7 +31,7 @@
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-    <title>SGP-INTN</title>
+    <title>SGP INTN</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                 </button>
                 <img src="http://localhost/SGP/img/head.png" width=500 height=80 alt="Obra de K. Haring"> 
             </div>
-            <center><a class="navbar-brand" href="#"><h2>Sistema de Gestion de Precintos - SGP-INTN</h2></a></center>
+            <center><a class="navbar-brand" href="#"><h2>Sistema de Gestion de Precintos - SGP INTN</h2></a></center>
             <!-- /.navbar-header -->
             <br><br>
             <ul class="nav navbar-top-links navbar-right">
@@ -217,27 +217,21 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa  fa-bank"></i> BANCOS<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-bank"></i> ENTREGAS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/bancos/ABMbanco.php">Registros de Bancos</a>
+                                    <a href="http://localhost/SGP/web/entregas/ABMentrega.php">Registros de Entregas</a>
                                 </li>
-                                <li>
-                                    <a href="http://localhost/SGP/web/cuentas/ABMcuenta.php">Registros de Cuentas Bancarias</a>
-                                </li>
-                                 <li>
-                                    <a href="http://localhost/SGP/web/depositos/ABMdeposito.php">Depósitos</a>
-                                </li>
+                                
                             </ul> 
                         </li>
-                        
-                       
+
                         <li>
-                            <a href="#"><i class="fa  fa-hand-o-right "></i>  ORDEN DE COMPRAS<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-hand-o-right "></i>  GENERAR PRECINTOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/orden_compras/RegistrarOrden.php">Orden de Compras</a>
-                                     <a href="http://localhost/SGP/web/orden_compras/ConsultarOrdenes.php">Consultar Ordenes Enviadas</a>
+                                    <a href="http://localhost/SGP/web/generar_precintos/GenerarPrecintos.php">Generar Precintos</a>
+                                     <a href="http://localhost/SGP/web/generar_precintos/ABMprecinto.php">Registro de Precintos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

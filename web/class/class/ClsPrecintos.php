@@ -20,6 +20,7 @@
           if  (empty($_POST['txtInicio'])){$inicio=0;}else{$inicio=$_POST['txtInicio'];}
           if  (empty($_POST['txtFin'])){$fin=0;}else{ $fin = $_POST['txtFin'];}
           if  (empty($_POST['txtEntrega'])){$entrega=0;}else{ $entrega= $_POST['txtEntrega'];}
+          if  (empty($_POST['txtPuesto'])){$puesto=0;}else{ $puesto= $_POST['txtPuesto'];}
           if  (empty($_POST['txtActivo'])){$activo='f';}else{ $activo = 't';}
           
            $database = 'PRECINTOS';
@@ -37,7 +38,7 @@
                             //se define el Query
                           for ($X=$inicio;$X<=$fin;$X++){
                               
-                              $query = "INSERT INTO precinto(pre_nro,pre_fec,en_cod,pre_activo) VALUES ('$inicio','now()',$entrega,'t');";
+                              $query = "INSERT INTO precinto(pre_nro,pre_fec,en_cod,pues_cod,pre_activo) VALUES ('$inicio','now()',$entrega,$puesto,'t');";
                               $inicio=$inicio+1;
                               //ejecucion del query
                               $ejecucion = pg_query($query)or die('Error al realizar la carga');
@@ -49,7 +50,7 @@
                             $query = "update entrega set en_activo='f' where en_cod=$entrega";
                             $ejecucion = pg_query($query)or die('<script type="text/javascript">alert("Error al dar de baja la Entrega..");</script>');
                             //ejecucion del query
-                            header("Refresh:0; url=http://localhost/Precintos/precintado/index.php");
+                            header("Refresh:0; url=http://localhost/SGP/web/generar_precintos/ABMprecinto.php");
                             }
          }
            //si el registro es en modificar modificar

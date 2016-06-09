@@ -108,21 +108,7 @@
                return false;
             }
         }
-        function func_SalarioDuplicado($codFuncionario, $database){
-            selectConexion($database);
-            $query = "select fun_cod as CodigoFuncionario,to_char((sal_fecha), 'MONTH') as FechaSalario  
-                from salario 
-                where EXTRACT(MONTH FROM sal_fecha)= EXTRACT(MONTH FROM now()) 
-                and EXTRACT(YEAR FROM sal_fecha)= EXTRACT(YEAR FROM now()) 
-                and fun_cod=$codFuncionario ;";
-            $result = pg_query($query) or die ("Error al realizar la consulta");
-            if (pg_num_rows($result)>0)
-            {
-               return 1;
-            } else {
-               return 0;
-            }
-        }
+       
         function genMonth_Text1($m) { 
         switch ($m) { 
          case '01': $month_text = "Enero"; break; 
@@ -142,13 +128,12 @@
        } 
        
        function cantidad_Stock($codstock){
-            selectConexion('PRECINTOS');
-            $query = "select st_stock_actual from stock where st_cod=$codstock;";
+            selectConexion('precintos');
+            $query = "select rem_stock_actual from remisiones where rem_cod=$codstock;";
             $result = pg_query($query) or die ("Error al realizar la consulta");
             $row = pg_fetch_row($result);
             if ($row[0]>0)
             {
-               
                return $row[0];
             } else {
                 return 0;

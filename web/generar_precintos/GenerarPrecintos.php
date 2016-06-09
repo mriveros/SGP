@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['codigo_usuario']))
 header("Location:http://localhost/SGP/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
+$codigo_usuario=$_SESSION['codigo_usuario'];
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SGP INTN-Pagos Realizados</title>
+    <title>SGP INTN-Generar</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -52,18 +53,21 @@ $catego=  $_SESSION["categoria_usuario"];
 			responsive: true
         });
     });
-    
-   
     </script>
-	<script>
-        function imprimirPago(codigo){
-        document.getElementById("txtCodigo").value = codigo;
-        }
-        </script>
+	<script type="text/javascript">
+		function eliminar(codigo){
+			document.getElementById("txtCodigoE").value = codigo;
+		};
+                function generar(codigo){
+			document.getElementById("txtCodigoGenerar").value = codigo;
+		};
+	</script>
 </head>
 
 <body>
+
     <div id="wrapper">
+
         <?php 
         include("../funciones.php");
         if ($catego==1){
@@ -73,13 +77,14 @@ $catego=  $_SESSION["categoria_usuario"];
         }elseif($catego==3){
              include("../menu_supervisor.php");
         }
+       
         conexionlocal();
         ?>
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Imprimir Pagos - <small>SGP INTN</small></h1>
+                      <h1 class="page-header">Generar Precintos - <small>SGP INTN</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -87,7 +92,7 @@ $catego=  $_SESSION["categoria_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Pagos
+                            Listado de Entregas
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -95,38 +100,48 @@ $catego=  $_SESSION["categoria_usuario"];
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr class="success">
-                                            <th style='display:none'>Codpago</th>
-                                            <th>Banco</th>
-                                            <th>Cuenta</th>
-                                            <th>Cheque</th>
+                                            <th style='display:none'>Codigo</th>
+                                            <th>Descripción</th>
+                                            <th>Remisión</th>
+                                            <th>Puesto</th>
+                                            <th>Encargado</th>
+                                            <th>Cantidad</th>
+                                            <th>Inicio</th>
+                                            <th>Fin</th>
                                             <th>Fecha</th>
-                                            <th>Monto</th>
-                                            <th>Pago Fuente</th>
+                                            <th>Estado</th>
                                             <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select ordpag.pag_cod,ban.ban_nom,cuen.cuen_nom,ordpag.pag_cheque,
-                        ordpag.pag_monto,ordpag.pag_fecha,ordpag.pag_fuente,ordpag.pag_activo
-                    from orden_pago ordpag,facturas fac,proveedores pro,bancos ban,cuentas cuen
-                    where ordpag.fac_cod=fac.fac_cod
-                    and fac.pro_cod=pro.pro_cod
-                    and ban.ban_cod=ordpag.ban_cod";
+                    $query = "select en.en_cod, en_des, rem_des,pues_des,enc.en_nom||' '||enc.en_ape as nombre, en.en_cantidad, en.en_nro_inicio,en.en_nro_fin,to_char(en.en_fecha,'DD/MM/YYYY' )as fecha, en.en_activo 
+                        from entrega en,encargado enc,puestos pues, remisiones rem,usuarios usu,puesto_usuario puesusu
+                    where en.enc_cod=enc.en_cod
+                    and en.pues_cod=pues.pues_cod
+                    and pues.pues_cod=puesusu.pues_cod
+                    and usu.usu_cod=puesusu.usu_cod
+                    and en.rem_cod=rem.rem_cod and en.en_activo='t'
+                    and usu.usu_cod=$codigo_usuario;";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
-                        $estado=$row1["pag_activo"];
+                        $estado=$row1["en_activo"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
-                        echo "<tr><td style='display:none'>".$row1["pag_cod"]."</td>";
-                        echo "<td>".$row1["ban_nom"]."</td>";
-                        echo "<td>".$row1["cuen_nom"]."</td>";
-                        echo "<td>".$row1["pag_cheque"]."</td>";
-                        echo "<td>".$row1["pag_fecha"]."</td>";
-                        echo "<td>".$row1["pag_monto"]."</td>";
-                        echo "<td>".$row1["pag_fuente"]."</td>";
+                        echo "<tr><td style='display:none'>".$row1["en_cod"]."</td>";
+                        echo "<td>".$row1["en_des"]."</td>";
+                        echo "<td>".$row1["rem_des"]."</td>";
+                        echo "<td>".$row1["pues_des"]."</td>";
+                        echo "<td>".$row1["nombre"]."</td>";
+                        echo "<td>".$row1["en_cantidad"]."</td>";
+                        echo "<td>".$row1["en_nro_inicio"]."</td>";
+                        echo "<td>".$row1["en_nro_fin"]."</td>";
+                        echo "<td>".$row1["fecha"]."</td>";
+                        echo "<td>".$estado."</td>";
                         echo "<td>";?>
-                        <a onclick='imprimirPago(<?php echo $row1["pag_cod"];?>)' class="btn btn-success btn-xs bg-success" data-toggle="modal" data-target="#modalimprimir" role="button">Imprimir Pago</a>
+                        
+                       <a onclick='generar(<?php echo $row1["en_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalgenerar" role="button">Generar!</a>
+                        <a onclick='eliminar(<?php echo $row1["en_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
                         <?php
                         echo "</td></tr>";
                     }
@@ -150,37 +165,68 @@ $catego=  $_SESSION["categoria_usuario"];
 
     </div>
     <!-- /#wrapper -->
-      
-        <!-- /#MODAL PARA GENERAR ORDEN DE PAGO -->
-       <div class="modal fade" id="modalimprimir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	
+	<div class="modal fade" id="modalgenerar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-trash"></i> Imprimir Pago</h3>
+					<h3 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-alert"></i> Generar Precintos</h3>
 				</div>
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form class="form-horizontal" name="borrarform" action="../informes/Imp_OrdenPago.php" onsubmit="return submitForm();" method="post" role="form">
+                                    <form class="form-horizontal" name="generarform" action="../class/ClsPrecintos.php" onsubmit="return submitForm();" method="post" role="form">
 						<div class="form-group">
-							<input type="numeric" name="txtCodigoA" class="hide" id="txtCodigo" />
+							<input type="numeric" name="txtCodigoGenerar" class="hide" id="txtCodigoGenerar" />
 							<div class="alert alert-danger alert-dismissable col-sm-10 col-sm-offset-1">
-								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-								¡¡¡ATENCION!!! ...Se imprimira el siguiente pago..
+								<button type="button" class="close" aria-hidden="true">&times;</button>
+								¡¡¡ATENCION!!! ...Los precintos serán Generados para el puesto..
 							</div>
 						</div>
-				
+				</div>
 				
 				<!-- Modal Footer -->
 				<div class="modal-footer">
 					<button type="" onclick="location.reload();" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-					<button type="submit" name="borrar" class="btn btn-danger">Imprimir</button>
-					
+					<button type="submit" name="generar" class="btn btn-primary">Generar</button>
+					</form>
 				</div>
-                                </form>
-                                </div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- /#MODAL ELIMINACIONES -->
+	<div class="modal fade" id="modalbor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-trash"></i> Borrar Registro</h3>
+				</div>
+            
+				<!-- Modal Body -->
+				<div class="modal-body">
+                                    <form class="form-horizontal" name="borrarform" action="../class/ClsPrecintos.php" onsubmit="return submitForm();" method="post" role="form">
+						<div class="form-group">
+							<input type="numeric" name="txtCodigoE" class="hide" id="txtCodigoE" />
+							<div class="alert alert-danger alert-dismissable col-sm-10 col-sm-offset-1">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								¡¡¡ATENCION!!! ...Se borrara el siguiente registro..
+							</div>
+						</div>
+				</div>
+				
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<button type="" onclick="location.reload();" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+					<button type="submit" name="borrar" class="btn btn-danger">Borrar</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
