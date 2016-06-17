@@ -106,7 +106,7 @@ function Header()
     $this->text(150,93,'..................');
     $this->Line(200,100,10,100);//largor,ubicacion derecha,inicio,ubicacion izquierda
     
-    $this->text(10,105  ,'Precintos aplicados al camion cisterna: Cantidad:......(          )');
+    $this->text(10,105  ,'Precintos aplicados al camion cisterna: Cantidad:......(LETRAS)');
     
     $this->Line(160,40,10,40);//largor,ubicacion derecha,inicio,ubicacion izquierda
 }
