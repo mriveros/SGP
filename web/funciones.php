@@ -39,6 +39,27 @@
             $row1 = pg_fetch_array($query);
             return $row1[0];
         }
+        function obtener($tabla,$columna,$campo,$condicion){
+            $query = pg_query("select $columna from $tabla where $campo=$condicion");
+            $row1 = pg_fetch_array($query);
+            return $row1[0];
+        }
+         function obtener_codigo_precinto($tabla,$columna,$campo,$condicion,$codigo_precintado){
+            $query = pg_query("select $columna from $tabla where $campo=$condicion and pre_activo='t' and pre_estado='Disponible'");
+            $row1 = pg_fetch_array($query);
+            if ($row1[0]==''){
+                $query = pg_query("delete from precintado where prec_cod=$codigo_precintado");
+                echo '<script type="text/javascript">
+		alert("El Precinto ya ha sido usado o no existe. Vuelva a Generar el Registro");
+                window.location="http://localhost/SGP/web/registrar_precintos/registrar_precintos.php";
+		</script>';
+            }
+            return $row1[0];
+        }
+        function dar_baja_precinto($codigo_precinto){
+             $query = pg_query("update precinto set pre_activo='f',pre_estado='Usado' where pre_cod=$codigo_precinto");
+            
+        }
        function func_existeDatoDetalle1($dato1,$dato2 ,$tabla, $columna1,$columna2, $database){
             selectConexion($database);
             $query = "select * from $tabla where $columna1 = '$dato1' and $columna2 = '$dato2' ;";

@@ -122,7 +122,7 @@ $codigo_usuario=$_SESSION['codigo_usuario'];
                     {
                         $activo=$row1["pre_activo"];
                         if($activo=='t'){$activo='Activo';}else{$activo='Inactivo';}
-                        echo "<tr><td style='display:none'>".$row1["en_cod"]."</td>";
+                        echo "<tr><td style='display:none'>".$row1["pre_cod"]."</td>";
                         echo "<td>".$row1["pre_nro"]."</td>";
                         echo "<td>".$row1["pues_des"]."</td>";
                         echo "<td>".$row1["en_des"]."</td>";
@@ -131,7 +131,7 @@ $codigo_usuario=$_SESSION['codigo_usuario'];
                         echo "<td>".$activo."</td>";
                         echo "<td>";?>
                         
-                        <a onclick='anular(<?php echo $row1["en_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Anular</a>
+                        <a onclick='anular(<?php echo $row1["pre_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Anular</a>
                         <?php
                         echo "</td></tr>";
                     }

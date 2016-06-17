@@ -17,8 +17,12 @@ $pwd=md5($_REQUEST['clave']);
 //session_start();
 //print_r($_REQUEST);
 //INGRESO DE USUARIO
-	$sql= "SELECT * FROM usuarios u
-        WHERE u.usu_username = '$usr' AND u.usu_pass =('$pwd') and u.usu_activo='t'" ;
+	$sql= "SELECT * FROM usuarios usu ,puestos pues, puesto_usuario puesusu
+        WHERE usu.usu_username = '$usr'
+        and usu.usu_pass =('$pwd')
+        and usu.usu_activo='t' 
+        and pues.pues_cod=puesusu.pues_cod
+        and usu.usu_cod=puesusu.usu_cod" ;
 	//echo "$sql";
 	//echo $n.' ---'.$sql; 
 	$datosusr = pg_query($sql);
@@ -39,6 +43,7 @@ $pwd=md5($_REQUEST['clave']);
             $_SESSION["nombre_usuario"] = $row['usu_nom'];
             $_SESSION["codigo_usuario"] = $row['usu_cod'];
             $_SESSION["categoria_usuario"] = $row['cat_cod'];
+            $_SESSION["puesto_usuario"] = $row['pues_cod'];
             if ($row['cat_cod']==1){
                  header("Location:http://localhost/SGP/web/menu.php");
                  

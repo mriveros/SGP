@@ -231,7 +231,17 @@
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="http://localhost/SGP/web/generar_precintos/GenerarPrecintos.php">Generar Precintos</a>
-                                     <a href="http://localhost/SGP/web/generar_precintos/ABMprecinto.php">Registro de Precintos</a>
+                                    <a href="http://localhost/SGP/web/generar_precintos/ABMprecinto.php">Registro de Precintos</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa  fa-automobile "></i>  REGISTRAR PRECINTOS<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                 
+                                    <a href="http://localhost/SGP/web/registrar_precintos/registrar_precintos.php">Precintado de Camiones</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -263,7 +273,7 @@
                             <ul class="nav nav-second-level">
                                 <li>
                                      <a href="http://localhost/SGP/web/orden_pagos/Crear_Pago.php">Crear Orden de Pagos</a>
-                                    <a href="http://localhost/SGP/web/orden_pagos/OrdenPago.php">Ordenes de Pagos</a>
+                                     <a href="http://localhost/SGP/web/orden_pagos/OrdenPago.php">Ordenes de Pagos</a>
                                      <a href="http://localhost/SGP/web/orden_pagos/ImprimirPagos.php">Imprimir Pagos</a>
                                 </li>
                             </ul>
@@ -273,6 +283,9 @@
                         <li>
                             <a href="#"><i class="fa  fa-file-text "></i> INFORMES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="http://localhost/SGP/web/informes/Imp_registro_impresion.php">Imprimir Registro</a>
+                                </li>
                                 <li>
                                     <a href="http://localhost/SGP/web/informes/frmResumenCompras.php">Resumen Compras</a>
                                 </li>
