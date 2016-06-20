@@ -162,31 +162,16 @@ $pdf->SetFont('Arial','',10);
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-$consulta=pg_exec($conectate,"select pro.pro_nom || ' '||pro.pro_ape as proveedor, pro.pro_razon, pro.pro_ruc,pro.pro_dir,
-    ban.ban_nom,cuen.cuen_nom,ordpag.pag_cheque,ordpag.pag_monto,fac.fac_nro,fac.fac_cod,con.con_nom,fac.fac_obs
-from orden_pago ordpag,facturas fac,proveedores pro,bancos ban, conceptos con,cuentas cuen
-where ordpag.fac_cod=fac.fac_cod
-and fac.pro_cod=pro.pro_cod
-and ban.ban_cod=ordpag.ban_cod
-and con.con_cod=fac.con_cod
-and cuen.ban_cod=ban.ban_cod
-and ordpag.pag_cod=$codPago");
+$consulta=pg_exec($conectate,"");
 $numregs=pg_numrows($consulta);
     if($numregs<=0)
     {
-         $consulta=pg_exec($conectate,"select pro.pro_nom || ' '||pro.pro_ape as proveedor, pro.pro_razon, pro.pro_ruc,pro.pro_dir,
-    ban.ban_nom,cuen.cuen_nom,ordpag.pag_cheque,ordpag.pag_monto,fac.fac_nro,fac.fac_cod,con.con_nom,fac.fac_obs
-    from orden_pago ordpag,facturas fac,proveedores pro,bancos ban, conceptos con,cuentas cuen
-    where ordpag.fac_cod=fac.fac_cod
-    and fac.pro_cod=pro.pro_cod
-    and ban.ban_cod=ordpag.ban_cod
-    and cuen.ban_cod=ban.ban_cod
-    and ordpag.pag_cod=$codPago");
+         $consulta=pg_exec($conectate,"");
     }
 
 
 global $codfactura,$monto,$montoResta;
-$monto=pg_result($consulta,0,'pag_monto');//25.900.000
+$monto=pg_result($consulta,0,'pag_monto');
 $codfactura=pg_result($consulta,0,'fac_cod');
 while($i<$numregs)
 {   
@@ -202,19 +187,22 @@ while($i<$numregs)
 }
  
 //-------------------Restar las retenciones de la factura---------------
-$query = "Select sum (pagret_monto) from pago_retenciones where fac_cod=$codfactura ;";
-$resultado=pg_query($query);
-$row=  pg_fetch_array($resultado);
-$retencionMonto=$row[0];//1179156.24
+
 //-----------------------------Cuerpo derecha----------------------------------
-$pdf->text(100,150,'Total:');
-$pdf->text(140,150,number_format($monto,0,'.','.'));
-$pdf->text(100,160,'Total deducciones:');
-$pdf->text(140,160,number_format($retencionMonto,0,'.','.'));
-$pdf->text(100,170,'Neto a Pagar:');
-$pdf->text(140,170,number_format(round ($monto-$retencionMonto),0,'.','.'));//25.900.000-1179156.24=24.720.844
-//monto con descuento de retenciones
-$montoResta=round($monto-$retencionMonto);
+$pdf->SetFont('Arial','B',10);
+$pdf->text(10,146,'Declaramos');
+$pdf->SetFont('Arial','',10);
+$pdf->text(30,146,utf8_decode('nuestra conformidad en relación a los datos que anteceden asi como de la correcta aplicación de los precintos'));
+$pdf->text(10,150,utf8_decode('de las bocas de carga y descarga cuyos numeros se citan en esta Nota de Remisión de Precintos.'));
+$pdf->text(10,154,utf8_decode('El chofer transportista es responsable de la devolución en buenas condiciones del total de los precintos utilizados'));
+$pdf->text(10,158,utf8_decode('y la nota de Remisión de Precintos. '));
+$pdf->SetFont('Arial','B',10);
+$pdf->text(68,158,utf8_decode('No volverá a cargar si no devuelve conforme o si tuviere observaciones de la '));
+$pdf->text(10,162,utf8_decode('Estacion de Servicios. No se premitirá enmienda en los números de precintos. '));
+$pdf->SetFont('Arial','',10);
+$pdf->text(10,166,utf8_decode('Para la nueva carga debe pasar por el INTN para la solución del inconveniente presentado conforme las disposiciones al'));
+$pdf->text(10,170,utf8_decode('respecto.'));
+
 //-------------------------Parte izquierda--------------------------------------
 $pdf->text(10,180,'Son: ');
 $pdf->text(20,180,convertirMonto((int)$montoResta));
