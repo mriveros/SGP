@@ -5,7 +5,7 @@ $(function() {
         data: [{
             period: '2010 Q1',
             iphone: 2666,
-            ipad: null,
+            ipad: 1000,
             itouch: 2647
         }, {
             period: '2010 Q2',
@@ -15,6 +15,7 @@ $(function() {
         }, {
             period: '2010 Q3',
             iphone: 4912,
+            
             ipad: 1969,
             itouch: 2501
         }, {
@@ -64,13 +65,13 @@ $(function() {
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
-            label: "Download Sales",
-            value: 12
+            label: "Precintos Usados",
+            value: 10
         }, {
-            label: "In-Store Sales",
-            value: 30
+            label: "Precintos Disponibles",
+            value: 10
         }, {
-            label: "Mail-Order Sales",
+            label: "Total",
             value: 20
         }],
         resize: true
@@ -79,33 +80,17 @@ $(function() {
     Morris.Bar({
         element: 'morris-bar-chart',
         data: [{
-            y: '2006',
+            y: 'Puesto 1',
             a: 100,
             b: 90
         }, {
-            y: '2007',
+            y: 'Puesto 2',
             a: 75,
             b: 65
         }, {
-            y: '2008',
+            y: 'Puesto 3',
             a: 50,
             b: 40
-        }, {
-            y: '2009',
-            a: 75,
-            b: 65
-        }, {
-            y: '2010',
-            a: 50,
-            b: 40
-        }, {
-            y: '2011',
-            a: 75,
-            b: 65
-        }, {
-            y: '2012',
-            a: 100,
-            b: 90
         }],
         xkey: 'y',
         ykeys: ['a', 'b'],
