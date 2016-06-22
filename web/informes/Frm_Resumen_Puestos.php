@@ -16,7 +16,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ONM- Estaciones</title>
+    <title>SGP INTN- Resumen Pagos Proveedor</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -66,7 +66,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Informes - <small>ONM ESTACIONES</small></h1>
+                      <h1 class="page-header">Informes - <small>SGP INTN</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -74,7 +74,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Informes Registro de Estaciones
+                            Resumen Pagos Proveedor
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -84,22 +84,22 @@ $codusuario=  $_SESSION["codigo_usuario"];
 				<!-- Modal Header -->
 				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive"></i> Reporte Usuarios por Fecha</h3>
+					<h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive"></i> Registros por Fecha</h3>
 				</div>
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="InfUsuariosFecha.php" method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="InfResumenPagosFecha.php" method="post" role="form">
 						
                                        
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Usuario</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Proveedor</label>
                                             <div class="col-sm-10">
-                                           <select name="txtUsuario" class="form-control" id="txtUsuario" required>
+                                           <select name="txtClienteA" class="form-control" id="txtClienteA" required>
                                                 <?php
                                                 //esto es para mostrar un select que trae datos de la BDD
                                                 conexionlocal();
-                                                $query = "Select usu_cod,usu_nom||' '||usu_ape  from usuarios where estado='t' ";
+                                                $query = "Select pro_cod,pro_nom||' '||pro_ape  from proveedores";
                                                 $resultadoSelect = pg_query($query);
                                                 while ($row = pg_fetch_row($resultadoSelect)) {
                                                 echo "<option value=".$row[0].">";

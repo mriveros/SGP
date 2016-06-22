@@ -2,8 +2,9 @@
 session_start();
 require('./fpdf.php');
 include '../MonedaTexto.php';
+global $codigo_precintado;  
 class PDF extends FPDF{
-    
+  
 function Footer()
 {
 	/*$this->SetDrawColor(0,0,0);
@@ -40,7 +41,7 @@ function Header()
 	$this->Line(200,40,10,40);//largor,ubicacion derecha,inicio,ubicacion izquierda
     //------------------------RECIBIMOS LOS VALORES DE GET-----------
     
-    if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
+   if  (empty($_POST['txtPrecinto'])){$nro_precinto=0;}else{$nro_precinto=$_POST['txtPrecinto'];}
     
     $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
@@ -49,12 +50,13 @@ function Header()
         pre.prec_nafta95,pre.prec_kerosene,pre.prec_turbo,pre.prec_avigas,pre.prec_fueloil,
         pre.prec_alcohol,pre.prec_nafta90,pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
         preci.pre_nom ||' ' ||preci.pre_ape as precintador,enc.en_nom ||' ' ||enc.en_ape as encargado
-        from precintado pre, emblemas em, puestos pues, encargado enc,precintador preci
+        from precintado pre, emblemas em, puestos pues, encargado enc,precintador preci,precintado_detalle predet
         where pre.pues_cod=pues.pues_cod
         and pre.em_cod=em.em_cod
         and pre.enc_cod=enc.en_cod
         and pre.preci_cod=preci.pre_cod
-        and pre.prec_cod=20");
+        and pre.prec_cod=predet.prec_cod
+	and predet.pre_nro=$nro_precinto");
     $row1 = pg_fetch_array($consulta);
     $puesto=$row1['pues_des'];
     $fecha=$row1['prec_fecha'];
@@ -145,11 +147,15 @@ function Header()
 $pdf= new PDF();//'P'=vertical o 'L'=horizontal,'mm','A4' o 'Legal'
 $pdf->AddPage();
 //------------------------RECIBIMOS LOS VALORES DE GET-----------
-if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
+if  (empty($_POST['txtPrecinto'])){$nro_precinto=0;}else{$nro_precinto=$_POST['txtPrecinto'];}
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-$consulta=pg_exec($conectate,"select pre_nro from precintado_detalle where prec_cod=20");
+ $consulta=pg_exec($conectate,"select pre.prec_cod from precintado pre,precintado_detalle predet
+where pre.prec_cod=predet.prec_cod and predet.pre_nro=$nro_precinto");
+$row1 = pg_fetch_array($consulta);
+$codigo_precintado=$row1['prec_cod'];
+$consulta=pg_exec($conectate,"select pre_nro from precintado_detalle where prec_cod=$codigo_precintado");
 $row1 = pg_fetch_array($consulta);
 $precinto1=$row1[0];
 $precinto2=$row1[1];
