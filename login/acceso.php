@@ -45,7 +45,7 @@ $pwd=md5($_REQUEST['clave']);
             $_SESSION["categoria_usuario"] = $row['cat_cod'];
             $_SESSION["puesto_usuario"] = $row['pues_cod'];
             if ($row['cat_cod']==1){
-                 header("Location:http://localhost/SGP/web/menu.php");
+                 header("Location:http://localhost/SGP/web/menu_principal.php");
                  
             }else if($row['cat_cod']==2){
                 header("Location:http://localhost/SGP/web/menu_usuario.php");

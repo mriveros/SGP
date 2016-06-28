@@ -19,7 +19,9 @@
           if  (empty($_POST['txtNroBiblioratoA'])){$bibliorato=0;}else{$bibliorato=$_POST['txtNroBiblioratoA'];}
           if  (empty($_POST['txtEncargadoA'])){$codigo_encargado=0;}else{$codigo_encargado=$_POST['txtEncargadoA'];}
           if  (empty($_POST['txtCodCamionA'])){$codigo_camion=0;}else{$codigo_camion=$_POST['txtCodCamionA'];}
-          if  (empty($_POST['txtTransportistaA'])){$transportista=0;}else{$transportista=$_POST['txtTransportistaA'];}
+          if  (empty($_POST['txtTransportistaA'])){$transportista='';}else{$transportista=$_POST['txtTransportistaA'];}
+          if  (empty($_POST['txtDestinoA'])){$destino=0;}else{$destino=$_POST['txtDestinoA'];}
+          if  (empty($_POST['txtPrecintadorA'])){$codigo_precintador='';}else{$codigo_precintador=$_POST['txtPrecintadorA'];}
           if  (empty($_POST['txtGasoilA'])){$gasoil=0;}else{$gasoil=$_POST['txtGasoilA'];}
           if  (empty($_POST['txtAlconaftaA'])){$alconafta=0;}else{$alconafta=$_POST['txtAlconaftaA'];}
           if  (empty($_POST['txtNafta85'])){$nafta85=0;}else{$nafta85=$_POST['txtNafta85'];}
@@ -66,12 +68,12 @@
             prec_gasoil, prec_alconafta, prec_nafta85, prec_nafta95, prec_kerosene, 
             prec_turbo, prec_avigas, prec_fueloil,
             enc_cod, prec_transportista, prec_fecha, prec_alcohol, 
-            prec_nafta90, cod_usuario, pre_estado)
+            prec_nafta90, cod_usuario, pre_estado,prec_destino,preci_cod)
     VALUES ($remision, $bibliorato, $puesto_usuario,$emblema, $codigo_camion, 
-            $gasoil, $alconafta, $nafta85, $nafta95, $kerosene, 
+            $gasoil, $alconafta, $nafta85, $nafta95, $kerosene,
             $turbo, $avigas, $fueloil,
             $codigo_encargado,'$transportista','now()', $alcohol,
-            $nafta90, $codusuario,'t');";
+            $nafta90, $codusuario,'t','$destino',$codigo_precintador);";
     $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
     header("Refresh:0; url=http://localhost/SGP/web/registrar_precintos/registrar_precintos.php");   
     
@@ -270,7 +272,7 @@
         pg_query($query)or die('Error al realizar la carga. Error: '.$query); 
      }
     //preparar para la impresion del registro de precintado
-    header("Refresh:0; url=http://localhost/SGP/web/informes/Imp_registro_impresion.php");
+    header("Refresh:0; url=http://localhost/SGP/web/informes/Imp_registro_impresion.php?codigo_precintado=$codigo_precintado");
     }
           
        

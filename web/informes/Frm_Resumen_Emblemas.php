@@ -84,22 +84,22 @@ $codusuario=  $_SESSION["codigo_usuario"];
 				<!-- Modal Header -->
 				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive"></i> Registros por Fecha</h3>
+					<h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive"></i> Emblema/Fecha</h3>
 				</div>
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="InfResumenPagosFecha.php" method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="Imp_Resumen_Emblemas.php" method="post" role="form">
 						
                                        
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Proveedor</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Emblema</label>
                                             <div class="col-sm-10">
-                                           <select name="txtClienteA" class="form-control" id="txtClienteA" required>
+                                           <select name="txtEmblema" class="form-control" id="txtEmblema" required>
                                                 <?php
                                                 //esto es para mostrar un select que trae datos de la BDD
                                                 conexionlocal();
-                                                $query = "Select pro_cod,pro_nom||' '||pro_ape  from proveedores";
+                                                $query = "Select em_cod,em_des  from emblemas";
                                                 $resultadoSelect = pg_query($query);
                                                 while ($row = pg_fetch_row($resultadoSelect)) {
                                                 echo "<option value=".$row[0].">";
@@ -113,7 +113,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Desde Fecha</label>
                                             <div class="col-sm-10">
-                                            <input type="date" name="txtDesdeFecha" class="form-control" id="txtDesdeFecha" required />
+                                                <input type="date" name="txtDesdeFecha" class="form-control" id="txtDesdeFecha" required />
                                             </div>
 					</div>
                                         <div class="form-group">

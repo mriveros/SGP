@@ -57,6 +57,9 @@ $catego=  $_SESSION["categoria_usuario"];
 		function eliminar(codigo){
 			document.getElementById("txtCodigoE").value = codigo;
 		};
+                function imprimir(codigo){
+			document.getElementById("txtCodigoImprimir").value = codigo;
+		};
 	</script>
 </head>
 
@@ -135,6 +138,7 @@ $catego=  $_SESSION["categoria_usuario"];
                         
                        
                         <a onclick='eliminar(<?php echo $row1["en_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
+                        <a onclick='imprimir(<?php echo $row1["en_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalimprimir" role="button">Imprimir</a>
                         <?php
                         echo "</td></tr>";
                     }
@@ -290,6 +294,38 @@ $catego=  $_SESSION["categoria_usuario"];
 				<div class="modal-footer">
 					<button type="" onclick="location.reload();" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
 					<button type="submit" name="borrar" class="btn btn-danger">Borrar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+        
+        <!-- /#MODAL IMPRIMIR -->
+	<div class="modal fade" id="modalimprimir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-print"></i> Imprimir Registro</h3>
+				</div>
+            
+				<!-- Modal Body -->
+				<div class="modal-body">
+                                    <form class="form-horizontal" name="imprimirform" action="../informes/Imp_Entrega.php" onsubmit="return submitForm();" method="post" role="form">
+						<div class="form-group">
+							<input type="numeric" name="txtCodigoImprimir" class="hide" id="txtCodigoImprimir" />
+							<div class="alert alert-danger alert-dismissable col-sm-10 col-sm-offset-1">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								¡¡¡ATENCION!!! ...Se Imprimirá el siguiente registro..
+							</div>
+						</div>
+				</div>
+				
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<button type="" onclick="location.reload();" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+					<button type="submit" name="borrar" class="btn btn-success">Imprimir</button>
 					</form>
 				</div>
 			</div>

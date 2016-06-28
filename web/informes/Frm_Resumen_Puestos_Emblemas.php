@@ -16,7 +16,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SGP INTN- Resumen Camion</title>
+    <title>SGP INTN- Resumen Puestos Emblemas</title>
     <!-- Bootstrap Core CSS -->
     <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -74,7 +74,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Resumen por Código Camión
+                            Resumen Pagos Proveedor
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -84,24 +84,54 @@ $codusuario=  $_SESSION["codigo_usuario"];
 				<!-- Modal Header -->
 				<div class="modal-header"><button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive"></i> Código Camión/Fecha</h3>
+					<h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive"></i> Emblema/Fecha</h3>
 				</div>
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="Imp_Resumen_Codigo_Camion.php" method="post" role="form">
-						
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="Imp_Resumen_Puestos__Emblemas.php" method="post" role="form">
+					
                                        
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Codigo Camión</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Puestos</label>
                                             <div class="col-sm-10">
-                                            <input type="number" name="txtCodigoCamion" class="form-control" id="txtCodigoCamion" required />
+                                           <select name="txtPuestos" class="form-control" id="txtPuestos" required>
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select pues_cod,pues_des  from puestos";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
                                             </div>
 					</div>
                                         <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Emblema</label>
+                                            <div class="col-sm-10">
+                                           <select name="txtEmblema" class="form-control" id="txtEmblema" required>
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "Select em_cod,em_des  from emblemas";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
+                                            </div>
+					</div>	
+                                        <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Desde Fecha</label>
                                             <div class="col-sm-10">
-                                            <input type="date" name="txtDesdeFecha" class="form-control" id="txtDesdeFecha" required />
+                                                <input type="date" name="txtDesdeFecha" class="form-control" id="txtDesdeFecha" required />
                                             </div>
 					</div>
                                         <div class="form-group">

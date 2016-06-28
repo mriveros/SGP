@@ -130,22 +130,31 @@
             }
         }
        
-        function genMonth_Text1($m) { 
+        function get_CantidadLetras($m) { 
         switch ($m) { 
-         case '01': $month_text = "Enero"; break; 
-         case '02': $month_text = "Febrero"; break; 
-         case '03': $month_text = "Marzo"; break; 
-         case '04': $month_text = "Abril"; break; 
-         case '05': $month_text = "Mayo"; break; 
-         case '06': $month_text = "Junio"; break; 
-         case '07': $month_text = "Julio"; break; 
-         case '08': $month_text = "Agosto"; break; 
-         case '09': $month_text = "Septiembre"; break; 
-         case '10': $month_text = "Octubre"; break; 
-         case '11': $month_text = "Noviembre"; break; 
-         case '12': $month_text = "Diciembre"; break; 
+         case '1': $cant_text = "Uno"; break; 
+         case '2': $cant_text = "Dos"; break; 
+         case '3': $cant_text = "Tres"; break; 
+         case '4': $cant_text = "Cuatro"; break; 
+         case '5': $cant_text = "Cinco"; break; 
+         case '6': $cant_text = "Seis"; break; 
+         case '7': $cant_text = "Siete"; break; 
+         case '8': $cant_text = "Ocho"; break; 
+         case '9': $cant_text = "Nueve"; break; 
+         case '10': $cant_text = "Diez"; break; 
+         case '11': $cant_text = "Once"; break; 
+         case '12': $cant_text = "Doce"; break;
+         case '13': $cant_text = "Trece"; break; 
+         case '14': $cant_text = "Catorce"; break; 
+         case '15': $cant_text = "Quince"; break; 
+         case '16': $cant_text = "Dieciseis"; break; 
+         case '17': $cant_text = "Diecisiete"; break; 
+         case '18': $cant_text = "Dieciocho"; break; 
+         case '19': $cant_text = "Diecinueve"; break; 
+         case '20': $cant_text = "Veinte"; break; 
+         case '21': $cant_text = "Veintiuno"; break; 
         } 
-        return ($month_text); 
+        return ($cant_text); 
        } 
        
        function cantidad_Stock($codstock){

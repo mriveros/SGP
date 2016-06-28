@@ -57,6 +57,7 @@ $catego=  $_SESSION["categoria_usuario"];
 		function eliminar(codigo){
 			document.getElementById("txtCodigoE").value = codigo;
 		};
+                
 	</script>
 </head>
 
@@ -172,6 +173,36 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <label  class="col-sm-2 control-label" for="input01">Nombre Chofer</label>
                                             <div class="col-sm-10">
                                            <input type="text" name="txtTransportistaA" class="form-control" id="txtTransportistaA" placeholder="ingrese nombre transportista" required="true"/>
+                                            </div>
+					</div>
+                                        
+                            </div>
+                                <div class="col-md-6">
+                                <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Precintador</label>
+                                            <div class="col-sm-10">
+                                               
+                                                <select name="txtPrecintadorA" class="form-control" id="txtPrecintadorA" required="true" >
+                                                <?php
+                                                //esto es para mostrar un select que trae datos de la BDD
+                                                conexionlocal();
+                                                $query = "select pre_cod, pre_nom||' '||pre_ape  from precintador where pre_activo='t'";
+                                                $resultadoSelect = pg_query($query);
+                                                while ($row = pg_fetch_row($resultadoSelect)) {
+                                                echo "<option value=".$row[0].">";
+                                                echo $row[1];
+                                                echo "</option>";
+                                                }
+                                                ?>
+                                             </select>
+                                            </div>
+					</div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Estación Destino</label>
+                                            <div class="col-sm-10">
+                                           <input type="text" name="txtDestinoA" class="form-control" id="txtDestinoA" placeholder="ingrese destino" required="true"/>
                                             </div>
 					</div>
                             </div>

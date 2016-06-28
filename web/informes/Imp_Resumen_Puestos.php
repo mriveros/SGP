@@ -14,12 +14,12 @@ function Footer()
     /***********************************OBTENER DATOS DEL FORMULARIO Y DATOS CABECERA***********************************/
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
-    if  (empty($_POST['txtEmblema'])){$emblema=0;}else{$emblema=$_POST['txtEmblema'];}
+    if  (empty($_POST['txtPuestos'])){$codigo_puesto=0;}else{$codigo_puesto=$_POST['txtPuestos'];}
     $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    $consulta=pg_exec($conectate,"select em_des from emblemas where em_cod=$emblema"); 
+    $consulta=pg_exec($conectate,"select pues_des from puestos where pues_cod=$codigo_puesto"); 
     $row1 = pg_fetch_array($consulta);
-    $nombre_emblema=$row1['em_des'];
+    $nombre_emblema=$row1['pues_des'];
     /********************************************************************************************************************/
         $this->SetFont('Arial','B',8);
         $consulta=pg_exec($conectate,"select sum(pre.prec_cantprecinto) as prec_cantprecinto, sum(pre.prec_precio) as prec_precio
@@ -28,7 +28,7 @@ function Footer()
         and em.em_cod=pre.em_cod
         and pre.prec_fecha>='$fechadesde' 
         and pre.prec_fecha <= '$fechahasta'
-        and em.em_cod=$emblema");
+        and pues.pues_cod=$codigo_puesto");
         $row1 = pg_fetch_array($consulta);
         $precinto_total=$row1['prec_cantprecinto'];
         $precio_total=$row1['prec_precio'];
@@ -69,18 +69,18 @@ function Header()
     
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
-    if  (empty($_POST['txtEmblema'])){$emblema=0;}else{$emblema=$_POST['txtEmblema'];}
+    if  (empty($_POST['txtPuestos'])){$codigo_puesto=0;}else{$codigo_puesto=$_POST['txtPuestos'];}
     $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    $consulta=pg_exec($conectate,"select em_des from emblemas where em_cod=$emblema"); 
+    $consulta=pg_exec($conectate,"select pues_des from puestos where pues_cod=$codigo_puesto"); 
     $row1 = pg_fetch_array($consulta);
-    $nombre_emblema=$row1['em_des'];
+    $nombre_puesto=$row1['pues_des'];
     
     $this->SetFont('Arial','B',8);
     $this->SetTitle('Resumen-Emblemas');
-    $this->Cell(350,1,'RESUMEN DE PRECINTADOS POR EMBLEMA',100,100,'C');//Titulo
-    $this->text(15,50,'EMBLEMA: ');
-    $this->text(32,50,$nombre_emblema);
+    $this->Cell(350,1,'RESUMEN DE PRECINTADOS POR PUESTOS',100,100,'C');//Titulo
+    $this->text(15,50,'PUESTO: ');
+    $this->text(32,50,$nombre_puesto);
     $this->text(15,55,'DESDE: ');
     $this->text(30,55,$fechadesde);
     $this->text(15,60,'HASTA: ');
@@ -93,7 +93,7 @@ function Header()
     $this->SetXY(10,65 );
     
     $this->Cell(25,10,'Item',1,0,'C',1);
-    $this->Cell(50,10,'Puesto',1,0,'C',1);
+    $this->Cell(50,10,'Emblema',1,0,'C',1);
     $this->Cell(50,10,'Destino',1,0,'C',1);
     $this->Cell(50,10,'Transportista',1,0,'C',1);
     $this->Cell(50,10,'Codigo Camion',1,0,'C',1);
@@ -108,12 +108,12 @@ $pdf=new PDF();//'P'=vertical o 'L'=horizontal,'mm','A4' o 'Legal'
 /***********************************OBTENER DATOS DEL FORMULARIO Y DATOS CABECERA***********************************/
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
-    if  (empty($_POST['txtEmblema'])){$emblema=0;}else{$emblema=$_POST['txtEmblema'];}
+    if  (empty($_POST['txtPuestos'])){$codigo_puesto=0;}else{$codigo_puesto=$_POST['txtPuestos'];}
     $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    $consulta=pg_exec($conectate,"select em_des from emblemas where em_cod=$emblema"); 
+    $consulta=pg_exec($conectate,"select pues_des from puestos where pues_cod=$codigo_puesto"); 
     $row1 = pg_fetch_array($consulta);
-    $nombre_emblema=$row1['em_des'];
+    $nombre_puesto=$row1['pues_des'];
 /********************************************************************************************************************/
   
 //------------------------------------------------------------------------------      
@@ -121,13 +121,13 @@ $pdf->AddPage('L', 'Legal');
 $pdf->AliasNbPages();
 $pdf->SetFont('Arial','B',10);
 
-$consulta=pg_exec($conectate,"select pues.pues_des, pre.prec_destino,pre.prec_transportista,pre.cam_cod,pre.prec_cantprecinto,pre.prec_precio,to_char(pre.prec_fecha,'DD/MM/YYYY' ) as prec_fecha
+$consulta=pg_exec($conectate,"select em.em_des, pre.prec_destino,pre.prec_transportista,pre.cam_cod,pre.prec_cantprecinto,pre.prec_precio,to_char(pre.prec_fecha,'DD/MM/YYYY' ) as prec_fecha
     from puestos pues,precintado pre,emblemas em
     where pues.pues_cod=pre.pues_cod
     and em.em_cod=pre.em_cod
     and pre.prec_fecha>='$fechadesde' 
     and pre.prec_fecha <= '$fechahasta'
-    and em.em_cod=$emblema");
+    and pues.pues_cod=$codigo_puesto");
 
 $numregs=pg_numrows($consulta);
 $pdf->SetFont('Arial','',10);
@@ -139,7 +139,7 @@ $fill=false;
 $i=0;
 while($i<$numregs)
 {
-    $puesto=pg_result($consulta,$i,'pues_des');
+    $emblema=pg_result($consulta,$i,'em_des');
     $destino=pg_result($consulta,$i,'prec_destino');
     $transportista=pg_result($consulta,$i,'prec_transportista');
     $codigo_camion=pg_result($consulta,$i,'cam_cod');
@@ -150,7 +150,7 @@ while($i<$numregs)
 
     
     $pdf->Cell(25,5,$i+1,1,0,'C',$fill);
-    $pdf->Cell(50,5,$puesto,1,0,'L',$fill);
+    $pdf->Cell(50,5,$emblema,1,0,'L',$fill);
     $pdf->Cell(50,5,$destino,1,0,'L',$fill);
     $pdf->Cell(50,5,$transportista,1,0,'L',$fill);
     $pdf->Cell(50,5,$codigo_camion,1,0,'L',$fill);
