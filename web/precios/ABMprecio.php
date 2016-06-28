@@ -57,12 +57,15 @@ $catego=  $_SESSION["categoria_usuario"];
 		function modificar(codigo){
 			$('tr').click(function() {
 			indi = $(this).index();
-                       	var precio1=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
-			var precio2=document.getElementById("dataTables-example").rows[indi+1].cells[3].innerText;
-                        var precio3=document.getElementById("dataTables-example").rows[indi+1].cells[4].innerText;
-                       
+                        
+                       	var precio1=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
+			var precio2=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
+                        var precio3=document.getElementById("dataTables-example").rows[indi+1].cells[3].innerText;
+                        var descripcion=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
                         //var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
+                        
                         document.getElementById("txtCodigo").value = codigo;
+                        document.getElementById("txtDescripcionM").value=descripcion;
                         document.getElementById("txtPrecio1M").value = precio1;
 			document.getElementById("txtPrecio2M").value = precio2;
                         document.getElementById("txtPrecio3M").value = precio3;
@@ -176,24 +179,30 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsIva.php" method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsPrecios.php" method="post" role="form">
 						
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtNombreA" class="form-control" id="txtNombreA" placeholder="ingrese nombre" required='true'/>
+                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese descripción" required='true'/>
                                             </div>
 					</div>
 					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Precio 1</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcionA" class="form-control" id="txtDescripcionA" placeholder="ingrese una descripcion" />
+                                            <input type="number" name="txtPrecio1A" class="form-control" id="txtPrecio1A" required='true' />
                                             </div>
 					</div>
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Porcentaje</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Precio 2</label>
                                             <div class="col-sm-10">
-                                            <input type="number" step="0.01" name="txtPorcentajeA" class="form-control" id="txtPorcentajeA" placeholder="ingrese un porcentaje" required='true'/>
+                                            <input type="number"  name="txtPrecio2A" class="form-control" id="txtPrecio2A"  required='true'/>
+                                            </div>
+					</div>	
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Precio 3</label>
+                                            <div class="col-sm-10">
+                                            <input type="number" name="txtPrecio3A" class="form-control" id="txtPrecio3A" required='true'/>
                                             </div>
 					</div>	
 				</div>
@@ -218,29 +227,30 @@ $catego=  $_SESSION["categoria_usuario"];
 				</div>
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="modificarform" action="../class/ClsIva.php"  method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="../class/ClsPrecios.php" method="post" role="form">
+					<input type="numeric" name="txtCodigo" class="hide" id="txtCodigo" />	
                                         <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
                                             <div class="col-sm-10">
-                                            <input type="hidden" name="txtCodigo" class="form-control" id="txtCodigo"  />
-                                            </div>
-					</div>
-                                        <div class="form-group">
-                                            <input type="numeric" name="codigo1" class="hide" id="input000" />
-                                            <label  class="col-sm-2 control-label" for="input01">Nombre</label>
-                                            <div class="col-sm-10">
-                                            <input type="text" name="txtNombreM" class="form-control" id="txtNombreM" placeholder="ingrese nombre" required='true'/>
+                                            <input type="text" name="txtDescripcionM" class="form-control" id="txtDescripcionM" placeholder="ingrese descripción" required='true'/>
                                             </div>
 					</div>
 					<div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Descripcion</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Precio 1</label>
                                             <div class="col-sm-10">
-                                            <input type="text" name="txtDescripcionM" class="form-control" id="txtDescripcionM" placeholder="ingrese una descripcion"  />
+                                            <input type="number" name="txtPrecio1M" class="form-control" id="txtPrecio1M" required='true' />
                                             </div>
 					</div>
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Porcentaje</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Precio 2</label>
                                             <div class="col-sm-10">
-                                            <input type="number" step="0.01" name="txtPorcentajeM" class="form-control" id="txtPorcentajeM" placeholder="ingrese un porcentaje" required='true'/>
+                                            <input type="number"  name="txtPrecio2M" class="form-control" id="txtPrecio2M"  required='true'/>
+                                            </div>
+					</div>	
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Precio 3</label>
+                                            <div class="col-sm-10">
+                                            <input type="number" name="txtPrecio3M" class="form-control" id="txtPrecio3M" required='true'/>
                                             </div>
 					</div>	
                                         <div class="form-group">
@@ -251,7 +261,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <label><input type="radio" name="txtEstadoM" value="0" /> Inactivo</label>
                                             </div>
                                             </div>
-					</div>		
+					</div>
 				</div>
 				
 				<!-- Modal Footer -->
@@ -276,7 +286,7 @@ $catego=  $_SESSION["categoria_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form class="form-horizontal" name="borrarform" action="../class/ClsIva.php" onsubmit="return submitForm();" method="post" role="form">
+                                    <form class="form-horizontal" name="borrarform" action="../class/ClsPrecios.php" method="post" role="form">
 						<div class="form-group">
 							<input type="numeric" name="txtCodigoE" class="hide" id="txtCodigoE" />
 							<div class="alert alert-danger alert-dismissable col-sm-10 col-sm-offset-1">
