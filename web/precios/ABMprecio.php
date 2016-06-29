@@ -115,29 +115,29 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th style='display:none'>Codigo</th>
+                                            <th>Descripción</th>
                                             <th>Precio 1/7</th>
                                             <th>Precio 8/12</th>
                                             <th>Precio 13/X</th>
                                             <th>Fecha</th>
-                                            <th>Descipcion</th>
                                             <th>Estado</th>
                                             <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select * from precios;";
+                    $query = "select * from precios where pre_activo='t';";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
                         $estado=$row1["pre_activo"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
                         echo "<tr><td style='display:none'>".$row1["pre_cod"]."</td>";
+                        echo "<td>".$row1["pre_des"]."</td>";
                         echo "<td>".$row1["precio1"]."</td>";
                         echo "<td>".$row1["precio2"]."</td>";
                         echo "<td>".$row1["precio3"]."</td>";
                         echo "<td>".$row1["pre_fecha"]."</td>";
-                        echo "<td>".$row1["pre_des"]."</td>";
                         echo "<td>".$estado."</td>";
                         echo "<td>";?>
                         

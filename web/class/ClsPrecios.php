@@ -43,6 +43,9 @@ conexionlocal();
                     . "VALUES ('$descripcionA',$precio1A,$precio2A,$precio3A,now(),'t');";
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
+                $codigo_precio=obtenerUltimo('precios', 'pre_cod');
+                $query ="update precios set pre_activo='f' where pre_cod<>$codigo_precio";
+                pg_query($query)or die('Error al realizar la carga'.$query);
                 header("Refresh:0; url=http://localhost/SGP/web/precios/ABMprecio.php");
                 }
             }
