@@ -16,21 +16,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost/SGP/web/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="http://localhost/SGP/web/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="http://localhost/SGP/web/dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://localhost/SGP/web/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
      <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://localhost/SGP/web/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://localhost/SGP/web/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="http://localhost/SGP/web/bower_components/metisMenu/dist/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="http://localhost/SGP/web/dist/js/sb-admin-2.js"></script>
     <title>SGP INTN</title>
 </head>
 
@@ -247,38 +247,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                        
-                        <li>
-                            <a href="#"><i class="fa   fa-list-alt"></i> FACTURAS RECIBIDAS<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="http://localhost/SGP/web/facturacion/RegistrarFacturaCompra.php">Relacionar Facturas/Ordenes de Compras</a>
-                                    <a href="http://localhost/SGP/web/facturacion/ImprimirFacturas.php">Facturas Relacionadas</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa  fa-dollar"></i> RETENCIONES<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="http://localhost/SGP/web/retenciones/ABMretencion.php">Retenciones</a>
-                                    <a href="http://localhost/SGP/web/facturacion/Retenciones.php">Retencion de Facturas</a>
-                                    <a href="http://localhost/SGP/web/facturacion/Imp_Retencion.php">Imprimir</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa  fa-money"></i> ORDEN DE PAGOS<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                     <a href="http://localhost/SGP/web/orden_pagos/Crear_Pago.php">Crear Orden de Pagos</a>
-                                     <a href="http://localhost/SGP/web/orden_pagos/OrdenPago.php">Ordenes de Pagos</a>
-                                     <a href="http://localhost/SGP/web/orden_pagos/ImprimirPagos.php">Imprimir Pagos</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                         
                         <li>
                             <a href="#"><i class="fa  fa-file-text "></i> INFORMES<span class="fa arrow"></span></a>
