@@ -18,32 +18,35 @@ $catego=  $_SESSION["categoria_usuario"];
 
     <title>SGP INTN-Precintado</title>
     <!-- Bootstrap Core CSS -->
-    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="../../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 	<!-- DataTables CSS -->
-    <link href="../../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
     <!-- DataTables Responsive CSS -->
-    <link href="../../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- jQuery -->
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="../bower_components/chosen/bootstrap-select.css">	
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 	
     <!-- DataTables JavaScript -->
-    <script src="../../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="../../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
+   
 	    
 	<!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
@@ -127,6 +130,26 @@ $catego=  $_SESSION["categoria_usuario"];
                                              </select>
                                             </div>
 					</div>
+                            </div>
+                            <div class="form-group">
+				<?php include("area.php"); ?>
+				<label class="col-sm-2 control-label" for="cboPaises">Emblema</label>
+				<div class="col-sm-9">
+                                    <select class="selectpicker show-tick form-control" data-live-search="true" data-style="btn-primary" name="selcc0" id="cboPaises">
+                                    <!--<option value="0"> </option>-->
+                                   <?php
+                                        //esto es para mostrar un select que trae datos de la BDD
+                                        conexionlocal();
+                                        $query = "select em_cod, em_des from emblemas where em_activo='t'";
+                                        $resultadoSelect = pg_query($query);
+                                        while ($row = pg_fetch_row($resultadoSelect)) {
+                                        echo "<option value=".$row[0].">";
+                                        echo $row[1];
+                                        echo "</option>";
+                                    }
+                                    ?>
+                                    </select>
+                                    </div>
                             </div>
                                
                       </div>
