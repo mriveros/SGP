@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="http://localhost/SGP/img/head.png" width=500 height=80 alt="Obra de K. Haring"> 
+                <img src="http://localhost/SGP/web/img/head.png" width=500 height=80 alt="Obra de K. Haring"> 
             </div>
             <center><a class="navbar-brand" href="#"><h2>Sistema de Gestion de Precintos - SGP INTN</h2></a></center>
             <!-- /.navbar-header -->
