@@ -59,6 +59,13 @@ $catego=  $_SESSION["categoria_usuario"];
 		};
                 
 	</script>
+        <script src="selectize/dist/js/selectize.js"></script>
+        <script type="text/javascript">
+		$('#txtEmblemaA').selectize({
+                    create: true,
+                    sortField: 'text'
+                });    
+	</script>
 </head>
 
 <body>
