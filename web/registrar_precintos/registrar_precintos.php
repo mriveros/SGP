@@ -131,26 +131,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                             </div>
 					</div>
                             </div>
-                            <div class="form-group">
-				<?php include("area.php"); ?>
-				<label class="col-sm-2 control-label" for="cboPaises">Emblema</label>
-				<div class="col-sm-9">
-                                    <select class="selectpicker show-tick form-control" data-live-search="true" data-style="btn-primary" name="selcc0" id="cboPaises">
-                                    <!--<option value="0"> </option>-->
-                                   <?php
-                                        //esto es para mostrar un select que trae datos de la BDD
-                                        conexionlocal();
-                                        $query = "select em_cod, em_des from emblemas where em_activo='t'";
-                                        $resultadoSelect = pg_query($query);
-                                        while ($row = pg_fetch_row($resultadoSelect)) {
-                                        echo "<option value=".$row[0].">";
-                                        echo $row[1];
-                                        echo "</option>";
-                                    }
-                                    ?>
-                                    </select>
-                                    </div>
-                            </div>
+                            
                                
                       </div>
                       <div class="row">
