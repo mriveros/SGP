@@ -3,7 +3,8 @@ session_start();
 if(!isset($_SESSION['codigo_usuario']))
 header("Location:http://localhost/SGP/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
-
+$codigo_puesto=$_SESSION["puesto_usuario"];
+$codigo_usuario=$_SESSION['codigo_usuario'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,7 +19,8 @@ $catego=  $_SESSION["categoria_usuario"];
 
     <title>SGP INTN-Entregas</title>
     <!-- Bootstrap Core CSS -->
-    <link href=../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 	<!-- DataTables CSS -->
@@ -226,7 +228,8 @@ $catego=  $_SESSION["categoria_usuario"];
                                                 <?php
                                                 //esto es para mostrar un select que trae datos de la BDD
                                                 conexionlocal();
-                                                $query = "Select pues_cod,pues_Des from puestos where pues_activo='t'";
+                                                $query = "Select pues.pues_cod,pues.pues_des from puestos pues,puesto_usuario pues_usu 
+                                                where pues.pues_cod=pues_usu.pues_cod and pues.pues_activo='t' and pues_usu.usu_cod=$codigo_usuario";
                                                 $resultadoSelect = pg_query($query);
                                                 while ($row = pg_fetch_row($resultadoSelect)) {
                                                 echo "<option value=".$row[0].">";

@@ -38,9 +38,9 @@
 		</script>';
                 }else{              
                 //se define el Query   
-                $query = "INSERT INTO usuarios(usu_nom,usu_ape,usu_username,usu_pass,estado,cat_cod) VALUES ('$nombreA','$apellidoA','$usernameA',md5('$passwordA'),'$activoA',$categoriaA);";
+                $query = "INSERT INTO usuarios(usu_nom,usu_ape,usu_username,usu_pass,usu_activo,cat_cod) VALUES ('$nombreA','$apellidoA','$usernameA',md5('$passwordA'),'t',$categoriaA);";
                 //ejecucion del query
-                $ejecucion = pg_query($query)or die('Error al realizar la carga');
+                $ejecucion = pg_query($query)or die('Error al realizar la carga ALTA USUARIO'.$query);
                 $query = '';
                 header("Refresh:0; url=http://localhost/SGP/web/usuarios/ABMusuario.php");
                 }
