@@ -32,6 +32,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
     <title>SGP INTN</title>
+ 
 </head>
 
 <body>
@@ -143,7 +144,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="http://localhost/SGP/web/menu.php" value="Load new document" onclick="location.reload();"><i class="fa  fa-tasks"></i> Menu Principal</a>
+                            <a href="http://localhost/SGP/web/menu_principal.php" value="Load new document" onclick="location.reload();"><i class="fa  fa-tasks"></i> Menu Principal</a>
                         </li>
 			<li>
                             <a href="#"><i class="fa fa-user"></i> USUARIOS<span class="fa arrow"></span></a>
@@ -282,75 +283,102 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>   
-        <div id="page-wrapper">
-            
-            <br><br><br><br>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Puestos/Precintos
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-bar-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                
-               
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Estado Precintos
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" hidden="true">
-                            Puestos/Cantidad de Precintos Utilizados
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body" hidden="true">
-                            <div id="morris-area-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                
-              
-            </div>
-            <!-- /.row -->
-        </div>
-           <!-- /#wrapper -->
 
-     <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+     <div id="wrapper">
+         <div id="page-wrapper">
+
+        
+            <div class="row">
+                
+				
+                <div class="col-lg-5">
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <center> <i class="fa fa-bar-chart-o fa-fw"></i><b> Estado Precintos</b></center>
+                        </div>
+                        <div class="panel-body">
+							<div id="donut"></div>
+                           
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    
+                </div>
+                 <div class="col-lg-5">
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           <center> <i class="fa fa-bar-chart-o fa-fw"></i><b> Estado Precintos</b></center>
+                        </div>
+                        <div class="panel-body">
+							<div id="donut2"></div>
+                           
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+
+        
+             
+    <!-- /#wrapper -->
+    </div>  
+    </div>
+       <?php
+        $query = pg_query("select count (pre_cod) from precinto where pues_cod=5 and pre_estado='Disponible'");
+        $row1 = pg_fetch_array($query);
+        $precintos_disponibles=$row1[0];
+        $query = pg_query("select count (pre_cod) from precinto where pues_cod=5 and pre_estado='Usado'");
+        $row1 = pg_fetch_array($query);
+        $precintos_usados=$row1[0];
+        echo "
+	<script type='text/javascript'>
+        $( document ).ready(function() {
+	Morris.Donut({
+            element: 'donut',
+            data: [
+              {value: ".$precintos_disponibles.", label: 'Disponibles'},
+              {value: ".$precintos_usados.", label: 'Usados'},
+            ],
+            formatter: function (x) { return x + ''}
+          }).on('click', function(i, row){
+            console.log(i, row);
+          });
+         });        
+        </script>";
+        
+        echo "
+	<script type='text/javascript'>
+        $( document ).ready(function() {
+	Morris.Donut({
+            element: 'donut2',
+            data: [
+              {value: ".$precintos_disponibles.", label: 'Disponibles'},
+              {value: ".$precintos_usados.", label: 'Usados'},
+            ],
+            formatter: function (x) { return x + ''}
+          }).on('click', function(i, row){
+            console.log(i, row);
+          });
+         });        
+        </script>";
+        
+        
+        ?>       
+
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+    <script language="JavaScript" type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- Morris Charts JavaScript -->
-    <script src="bower_components/raphael/raphael-min.js"></script>
-    <script src="bower_components/morrisjs/morris.min.js"></script>
-    <script src="js/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
+    <script language="JavaScript" type="text/javascript" src="bower_components/raphael/raphael.js"></script>
+    <script language="JavaScript" type="text/javascript" src="bower_components/morrisjs/morris.js"></script>
+    <link rel="stylesheet" href="bower_components/morrisjs/morris.css">  
+    <script language="JavaScript" type="text/javascript" src="js/morris-data.js"></script>
 </body>
 
 </html>
