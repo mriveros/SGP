@@ -38,7 +38,7 @@
                             $query = "update entrega set en_activo='f' where en_cod=$codigo_entrega";
                             $ejecucion = pg_query($query)or die('<script type="text/javascript">alert("Error al dar de baja la Entrega..");</script>');
                             //ejecucion del query
-                            header("Refresh:0; url=http://localhost/SGP/web/generar_precintos/ABMprecinto.php");
+                            header("Refresh:0; url=http://localhost/SGR/web/generar_precintos/ABMprecinto.php");
                             }
          
            //si el registro es en modificar modificar
@@ -46,7 +46,7 @@
                 conexionlocal();
                 $query = "update precinto set pre_activo= 'f' where pre_cod=$codigo;";
                 $ejecucion = pg_query($query)or die ('<script type="text/javascript">alert("Error al Anular el Precinto.Intente mas tarde..");</script>');
-                header("Refresh:0; url=http://localhost/SGP/web/generar_precintos/ABMprecinto.php");
+                header("Refresh:0; url=http://localhost/SGR/web/generar_precintos/ABMprecinto.php");
             }
        //
         ?>

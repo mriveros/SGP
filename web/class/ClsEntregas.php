@@ -29,7 +29,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                      
                       echo '<script type="text/javascript">
 			alert("La Cantidad supera el Stock disponible. Debe ser menor a '.$Stock.'");
-                            window.location="http://localhost/SGP/web/entregas/ABMentrega.php";
+                            window.location="http://localhost/SGR/web/entregas/ABMentrega.php";
 			 </script>';
                       }else{              
                             //se define el Query   
@@ -44,7 +44,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                             $query = "update remisiones set rem_stock_actual=(rem_stock_actual-$cantidad) where rem_cod=$codstock";
                             //ejecucion del query
                             $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
-                            header("Refresh:0; url=http://localhost/SGP/web/entregas/ABMentrega.php");
+                            header("Refresh:0; url=http://localhost/SGR/web/entregas/ABMentrega.php");
                             }
                         }
          //Si es Eliminar
@@ -61,7 +61,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
              $query="delete from entrega  where en_cod=$codigoElim";
              $ejecucion = pg_query($query)or die('<script type="text/javascript">
 		alert("La Entrega ya ha sido utilizado. No se puede Eliminar'.$query.'");
-                window.location="http://localhost/SGP/web/entregas/ABMentrega.php";
+                window.location="http://localhost/SGR/web/entregas/ABMentrega.php";
 		</script>');
              
              //sumamos la cantidad de la entrega 
@@ -69,7 +69,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
             //ejecucion del query
             $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
             
-             header("Refresh:0; url=http://localhost/SGP/web/entregas/ABMentrega.php");
+             header("Refresh:0; url=http://localhost/SGR/web/entregas/ABMentrega.php");
              
 	}
 

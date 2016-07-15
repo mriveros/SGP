@@ -41,7 +41,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
             if(func_existeDato($rucA, 'proveedores', 'pro_ruc')==true){
                 echo '<script type="text/javascript">
 		alert("El Proveedor ya existe. Intente ingresar otro Proveedor");
-                window.location="http://localhost/SGP/web/clientes/ABMcliente.php";
+                window.location="http://localhost/SGR/web/clientes/ABMcliente.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -51,7 +51,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://localhost/SGP/web/proveedores/ABMproveedor.php");
+                header("Refresh:0; url=http://localhost/SGR/web/proveedores/ABMproveedor.php");
                 }
             }
         //si es Modificar    
@@ -68,10 +68,10 @@ $codusuario=  $_SESSION["codigo_usuario"];
                     . "pro_activo='$estadoM' "
                     . "WHERE pro_cod=$codigoModif");
             $query = '';
-            header("Refresh:0; url=http://localhost/SGP/web/proveedores/ABMproveedor.php");
+            header("Refresh:0; url=http://localhost/SGR/web/proveedores/ABMproveedor.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update proveedores set pro_activo='f' WHERE pro_cod=$codigoElim");
-            header("Refresh:0; url=http://localhost/SGP/web/proveedores/ABMproveedor.php");
+            header("Refresh:0; url=http://localhost/SGR/web/proveedores/ABMproveedor.php");
 	}

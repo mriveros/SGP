@@ -30,7 +30,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
             if(func_existeDato($usuarioA, 'puesto_usuario', 'usu_cod')==true){
                 echo '<script type="text/javascript">
 		alert("El Usuario ya esta en este puesto. Ingrese otro Usuario");
-                window.location="http://localhost/SGP/web/puesto_usuario/ABMpuesto_usuario.php";
+                window.location="http://localhost/SGR/web/puesto_usuario/ABMpuesto_usuario.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -39,7 +39,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://localhost/SGP/web/puesto_usuario/ABMpuesto_usuario.php");
+                header("Refresh:0; url=http://localhost/SGR/web/puesto_usuario/ABMpuesto_usuario.php");
                 }
             }
         //si es Modificar    
@@ -50,10 +50,10 @@ $codusuario=  $_SESSION["codigo_usuario"];
                     . "pues_usu_activo='$estadoM'"
                     . "WHERE pues_usu_cod=$codigoModif");
             $query = '';
-           header("Refresh:0; url=http://localhost/SGP/web/puesto_usuario/ABMpuesto_usuario.php");
+           header("Refresh:0; url=http://localhost/SGR/web/puesto_usuario/ABMpuesto_usuario.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update puesto_usuario set pues_usu_activo='f' WHERE pues_usu_cod=$codigoElim");
-           header("Refresh:0; url=http://localhost/SGP/web/puesto_usuario/ABMpuesto_usuario.php");
+           header("Refresh:0; url=http://localhost/SGR/web/puesto_usuario/ABMpuesto_usuario.php");
 	}

@@ -30,7 +30,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
             if(func_existeDato($nombreA, 'emblemas', 'em_nom')==true){
                 echo '<script type="text/javascript">
 		alert("El Emblema ya existe. Ingrese otro Emblema");
-                window.location="http://localhost/SGP/web/emblemas/ABMemblema.php";
+                window.location="http://localhost/SGR/web/emblemas/ABMemblema.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -39,7 +39,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://localhost/SGP/web/emblemas/ABMemblema.php");
+                header("Refresh:0; url=http://localhost/SGR/web/emblemas/ABMemblema.php");
                 }
             }
         //si es Modificar    
@@ -50,10 +50,10 @@ $codusuario=  $_SESSION["codigo_usuario"];
                     . "em_activo='$estadoM' "
                     . "WHERE em_cod=$codigoModif");
             $query = '';
-            header("Refresh:0; url=http://localhost/SGP/web/emblemas/ABMemblema.php");
+            header("Refresh:0; url=http://localhost/SGR/web/emblemas/ABMemblema.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update emblemas set em_activo='f' WHERE em_cod=$codigoElim");
-            header("Refresh:0; url=http://localhost/SGP/web/emblemas/ABMemblema.php");
+            header("Refresh:0; url=http://localhost/SGR/web/emblemas/ABMemblema.php");
 	}
