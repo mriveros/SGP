@@ -15,7 +15,7 @@ function Footer()
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
     if  (empty($_POST['txtPuestos'])){$codigo_puesto=0;}else{$codigo_puesto=$_POST['txtPuestos'];}
-    $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost port=5432 dbname=SGR user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select pues_des from puestos where pues_cod=$codigo_puesto"); 
     $row1 = pg_fetch_array($consulta);
@@ -70,7 +70,7 @@ function Header()
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
     if  (empty($_POST['txtPuestos'])){$codigo_puesto=0;}else{$codigo_puesto=$_POST['txtPuestos'];}
-    $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost port=5432 dbname=SGR user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select pues_des from puestos where pues_cod=$codigo_puesto"); 
     $row1 = pg_fetch_array($consulta);
@@ -109,7 +109,7 @@ $pdf=new PDF();//'P'=vertical o 'L'=horizontal,'mm','A4' o 'Legal'
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
     if  (empty($_POST['txtPuestos'])){$codigo_puesto=0;}else{$codigo_puesto=$_POST['txtPuestos'];}
-    $conectate=pg_connect("host=localhost port=5432 dbname=precintos user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost port=5432 dbname=SGR user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select pues_des from puestos where pues_cod=$codigo_puesto"); 
     $row1 = pg_fetch_array($consulta);
