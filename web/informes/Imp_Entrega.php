@@ -70,7 +70,7 @@ $pdf->SetXY(10,100);
 $pdf->SetFont('Arial','',10);
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=localhost port=5432 dbname=SGR user=postgres password=postgres")or die ('Error al conectar a la base de datos');
+$conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select en.en_des,en.en_cantidad,en.en_nro_inicio,en.en_nro_fin,enc.en_nom||' '||enc.en_ape as encargado,rem.rem_des,col.col_des 
 from entrega en, puestos pues,encargado enc,remisiones rem,color col 
 where en.pues_cod=pues.pues_cod 

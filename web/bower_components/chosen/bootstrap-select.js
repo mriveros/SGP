@@ -1124,7 +1124,7 @@
               state = $option.prop('selected'),
               $optgroup = $option.parent('optgroup'),
               maxOptions = that.options.maxOptions,
-              maxOptionsGrp = $optgroup.data('maxOptions') || false;
+              maxOptionSGPp = $optgroup.data('maxOptions') || false;
 
           if (!that.multiple) { // Deselect all others if not multi select box
             $options.prop('selected', false);
@@ -1136,17 +1136,17 @@
             that.setSelected(clickedIndex, !state);
             $this.blur();
 
-            if (maxOptions !== false || maxOptionsGrp !== false) {
+            if (maxOptions !== false || maxOptionSGPp !== false) {
               var maxReached = maxOptions < $options.filter(':selected').length,
-                  maxReachedGrp = maxOptionsGrp < $optgroup.find('option:selected').length;
+                  maxReachedGrp = maxOptionSGPp < $optgroup.find('option:selected').length;
 
-              if ((maxOptions && maxReached) || (maxOptionsGrp && maxReachedGrp)) {
+              if ((maxOptions && maxReached) || (maxOptionSGPp && maxReachedGrp)) {
                 if (maxOptions && maxOptions == 1) {
                   $options.prop('selected', false);
                   $option.prop('selected', true);
                   that.$menuInner.find('.selected').removeClass('selected');
                   that.setSelected(clickedIndex, true);
-                } else if (maxOptionsGrp && maxOptionsGrp == 1) {
+                } else if (maxOptionSGPp && maxOptionSGPp == 1) {
                   $optgroup.find('option:selected').prop('selected', false);
                   $option.prop('selected', true);
                   var optgroupID = $this.parent().data('optgroup');
@@ -1154,15 +1154,15 @@
                   that.setSelected(clickedIndex, true);
                 } else {
                   var maxOptionsArr = (typeof that.options.maxOptionsText === 'function') ?
-                          that.options.maxOptionsText(maxOptions, maxOptionsGrp) : that.options.maxOptionsText,
+                          that.options.maxOptionsText(maxOptions, maxOptionSGPp) : that.options.maxOptionsText,
                       maxTxt = maxOptionsArr[0].replace('{n}', maxOptions),
-                      maxTxtGrp = maxOptionsArr[1].replace('{n}', maxOptionsGrp),
+                      maxTxtGrp = maxOptionsArr[1].replace('{n}', maxOptionSGPp),
                       $notify = $('<div class="notify"></div>');
                   // If {var} is set in array, replace it
                   /** @deprecated */
                   if (maxOptionsArr[2]) {
                     maxTxt = maxTxt.replace('{var}', maxOptionsArr[2][maxOptions > 1 ? 0 : 1]);
-                    maxTxtGrp = maxTxtGrp.replace('{var}', maxOptionsArr[2][maxOptionsGrp > 1 ? 0 : 1]);
+                    maxTxtGrp = maxTxtGrp.replace('{var}', maxOptionsArr[2][maxOptionSGPp > 1 ? 0 : 1]);
                   }
 
                   $option.prop('selected', false);
@@ -1174,7 +1174,7 @@
                     that.$element.trigger('maxReached.bs.select');
                   }
 
-                  if (maxOptionsGrp && maxReachedGrp) {
+                  if (maxOptionSGPp && maxReachedGrp) {
                     $notify.append($('<div>' + maxTxtGrp + '</div>'));
                     that.$element.trigger('maxReachedGrp.bs.select');
                   }

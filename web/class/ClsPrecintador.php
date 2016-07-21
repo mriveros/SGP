@@ -32,7 +32,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
             if(func_existeDato($nombreA, 'precintador', 'pre_nom')==true){
                 echo '<script type="text/javascript">
 		alert("El Precintador ya existe. Ingrese otro Precintador");
-                window.location="http://localhost/SGR/web/precintador/ABMprecintador.php";
+                window.location="http://localhost/SGP/web/precintador/ABMprecintador.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -41,7 +41,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://localhost/SGR/web/precintador/ABMprecintador.php");
+                header("Refresh:0; url=http://localhost/SGP/web/precintador/ABMprecintador.php");
                 }
             }
         //si es Modificar    
@@ -53,10 +53,10 @@ $codusuario=  $_SESSION["codigo_usuario"];
                     . "pre_activo='$estadoM' "
                     . "WHERE pre_cod=$codigoModif");
             $query = '';
-           header("Refresh:0; url=http://localhost/SGR/web/precintador/ABMprecintador.php");
+           header("Refresh:0; url=http://localhost/SGP/web/precintador/ABMprecintador.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update precintador set pre_activo='f' WHERE pre_cod=$codigoElim");
-            header("Refresh:0; url=http://localhost/SGR/web/precintador/ABMprecintador.php");
+            header("Refresh:0; url=http://localhost/SGP/web/precintador/ABMprecintador.php");
 	}

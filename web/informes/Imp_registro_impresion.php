@@ -42,7 +42,7 @@ function Header()
     
     if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
     
-    $conectate=pg_connect("host=localhost port=5432 dbname=SGR user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select pre.prec_cod,pues.pues_des,pre.prec_fecha,em.em_des,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
@@ -147,7 +147,7 @@ $pdf->AddPage();
 //------------------------RECIBIMOS LOS VALORES DE GET-----------
 if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=localhost port=5432 dbname=SGR user=postgres password=postgres"
+$conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select pre_nro from precintado_detalle where prec_cod=20");
 $row1 = pg_fetch_array($consulta);

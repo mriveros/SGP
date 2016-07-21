@@ -748,7 +748,7 @@ if (!document.createElement('canvas').getContext) {
   };
 
   contextPrototype.createLinearGradient = function(aX0, aY0, aX1, aY1) {
-    var gradient = new CanvasGradient_('gradient');
+    var gradient = new CanvaSGPadient_('gradient');
     gradient.x0_ = aX0;
     gradient.y0_ = aY0;
     gradient.x1_ = aX1;
@@ -758,7 +758,7 @@ if (!document.createElement('canvas').getContext) {
 
   contextPrototype.createRadialGradient = function(aX0, aY0, aR0,
                                                    aX1, aY1, aR1) {
-    var gradient = new CanvasGradient_('gradientradial');
+    var gradient = new CanvaSGPadient_('gradientradial');
     gradient.x0_ = aX0;
     gradient.y0_ = aY0;
     gradient.r0_ = aR0;
@@ -1004,7 +1004,7 @@ if (!document.createElement('canvas').getContext) {
     var arcScaleY = ctx.arcScaleY_;
     var width = max.x - min.x;
     var height = max.y - min.y;
-    if (fillStyle instanceof CanvasGradient_) {
+    if (fillStyle instanceof CanvaSGPadient_) {
       // TODO: Gradients transformed with the transformation matrix.
       var angle = 0;
       var focus = {x: 0, y: 0};
@@ -1341,7 +1341,7 @@ if (!document.createElement('canvas').getContext) {
   };
 
   // Gradient / Pattern Stubs
-  function CanvasGradient_(aType) {
+  function CanvaSGPadient_(aType) {
     this.type_ = aType;
     this.x0_ = 0;
     this.y0_ = 0;
@@ -1352,7 +1352,7 @@ if (!document.createElement('canvas').getContext) {
     this.colors_ = [];
   }
 
-  CanvasGradient_.prototype.addColorStop = function(aOffset, aColor) {
+  CanvaSGPadient_.prototype.addColorStop = function(aOffset, aColor) {
     aColor = processStyle(aColor);
     this.colors_.push({offset: aOffset,
                        color: aColor.color,
@@ -1420,7 +1420,7 @@ if (!document.createElement('canvas').getContext) {
   // set up externs
   G_vmlCanvasManager = G_vmlCanvasManager_;
   CanvasRenderingContext2D = CanvasRenderingContext2D_;
-  CanvasGradient = CanvasGradient_;
+  CanvaSGPadient = CanvaSGPadient_;
   CanvasPattern = CanvasPattern_;
   DOMException = DOMException_;
 })();
