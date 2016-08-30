@@ -49,7 +49,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="http://localhost/SGP/web/img/head.png" width=500 height=80 alt="Obra de K. Haring"> 
+                <img src="http://<?php echo $ruta;?>/SGP/web/img/head.png" width=500 height=80 alt="Obra de K. Haring"> 
             </div>
             <center><a class="navbar-brand" href="#"><h2>Sistema de Gestion de Precintos - SGP INTN</h2></a></center>
             <!-- /.navbar-header -->
@@ -131,7 +131,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="http://localhost/SGP/web/logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
+                        <li><a href="http://<?php echo $ruta;?>/SGP/web/logout.php"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -144,13 +144,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="http://localhost/SGP/web/menu_principal.php" value="Load new document" onclick="location.reload();"><i class="fa  fa-tasks"></i> Menu Principal</a>
+                            <a href="http://<?php echo $ruta;?>/SGP/web/menu_principal.php" value="Load new document" onclick="location.reload();"><i class="fa  fa-tasks"></i> Menu Principal</a>
                         </li>
 			<li>
                             <a href="#"><i class="fa fa-user"></i> USUARIOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/usuarios/ABMusuario.php">Registros de Usuarios</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/usuarios/ABMusuario.php">Registros de Usuarios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -159,7 +159,7 @@
                             <a href="#"><i class="fa  fa-users"></i> PROVEEDORES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/proveedores/ABMproveedor.php"> Registros de Proveedores</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/proveedores/ABMproveedor.php"> Registros de Proveedores</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -168,7 +168,7 @@
                             <a href="#"><i class="fa  fa-home "></i>  PUESTO USUARIO<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/puesto_usuario/ABMpuesto_usuario.php">Registros de Puestos y Usuarios</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/puesto_usuario/ABMpuesto_usuario.php">Registros de Puestos y Usuarios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -177,7 +177,7 @@
                             <a href="#"><i class="fa fa-minus"></i> PUESTOS DE PRECINTADO<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/puestos/ABMpuesto.php">Registros de Puestos</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/puestos/ABMpuesto.php">Registros de Puestos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -186,7 +186,7 @@
                             <a href="#"><i class="fa  fa-flickr "></i> EMBLEMAS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/emblemas/ABMemblema.php">Registros de Emblemas</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/emblemas/ABMemblema.php">Registros de Emblemas</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -195,7 +195,7 @@
                             <a href="#"><i class="fa   fa-pencil"></i> PRECINTADOR<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/precintador/ABMprecintador.php">Registros de Precintadores</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/precintador/ABMprecintador.php">Registros de Precintadores</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -204,7 +204,7 @@
                             <a href="#"><i class="fa  fa-dollar"></i> PRECIOS PRECINTOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/precios/ABMprecio.php">Registros de Precios</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/precios/ABMprecio.php">Registros de Precios</a>
                                 </li>
                             </ul>
                         
@@ -213,7 +213,7 @@
                             <a href="#"><i class="fa  fa-cubes"></i> REMISIONES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/remisiones/ABMremision.php">Registros de Remisiones</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/remisiones/ABMremision.php">Registros de Remisiones</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -222,7 +222,7 @@
                             <a href="#"><i class="fa  fa-bank"></i> ENTREGAS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/entregas/ABMentrega.php">Registros de Entregas</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/entregas/ABMentrega.php">Registros de Entregas</a>
                                 </li>
                                 
                             </ul> 
@@ -232,8 +232,8 @@
                             <a href="#"><i class="fa  fa-hand-o-right "></i>  GENERAR PRECINTOS<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/generar_precintos/GenerarPrecintos.php">Generar Precintos</a>
-                                    <a href="http://localhost/SGP/web/generar_precintos/ABMprecinto.php">Registro de Precintos</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/generar_precintos/GenerarPrecintos.php">Generar Precintos</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/generar_precintos/ABMprecinto.php">Registro de Precintos</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -243,7 +243,7 @@
                             <ul class="nav nav-second-level">
                                 <li>
                                  
-                                    <a href="http://localhost/SGP/web/registrar_precintos/registrar_precintos.php">Precintado de Camiones</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/registrar_precintos/registrar_precintos.php">Precintado de Camiones</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -255,12 +255,12 @@
                             <a href="#"><i class="fa  fa-file-text "></i> INFORMES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/SGP/web/informes/Imp_registro_impresion.php">Imprimir Registro</a>
-                                    <a href="http://localhost/SGP/web/informes/Frm_Busqueda_Precinto.php">Impresión/Búsqueda por Precinto</a>
-                                    <a href="http://localhost/SGP/web/informes/Frm_Resumen_Emblemas.php">Resumen por Emblemas</a> 
-                                    <a href="http://localhost/SGP/web/informes/Frm_Resumen_Puestos.php">Resumen por Puestos</a> 
-                                    <a href="http://localhost/SGP/web/informes/Frm_Resumen_Camion.php">Resumen/Búsqueda por Código Camión</a> 
-                                    <a href="http://localhost/SGP/web/informes/Frm_Resumen_Puestos_Emblemas.php">Resumen por Puestos-Emblemas</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Imp_registro_impresion.php">Imprimir Registro</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Busqueda_Precinto.php">Impresión/Búsqueda por Precinto</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Emblemas.php">Resumen por Emblemas</a> 
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Puestos.php">Resumen por Puestos</a> 
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Camion.php">Resumen/Búsqueda por Código Camión</a> 
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Puestos_Emblemas.php">Resumen por Puestos-Emblemas</a>
                                 </li>
                                
                                     

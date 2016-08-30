@@ -29,7 +29,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
             if(func_existeDato($nombreA, 'remisiones', 'rem_des')==true){
                 echo '<script type="text/javascript">
 		alert("La Remision ya existe. Ingrese otra Remision");
-                window.location="http://localhost/SGP/web/remisiones/ABMremision.php";
+                window.location="http://<?php echo $ruta;?>/SGP/web/remisiones/ABMremision.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -39,7 +39,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://localhost/SGP/web/remisiones/ABMremision.php");
+                header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/remisiones/ABMremision.php");
                 }
             }
       
@@ -47,7 +47,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
         if(isset($_POST['borrar'])){
             pg_query("delete from remisiones WHERE rem_cod=$codigoElim")or die('<script type="text/javascript">
 		alert("La Remisión ya ha sido utilizado. No se puede Eliminar");
-                window.location="http://localhost/SGP/web/remisiones/ABMremision.php";
+                window.location="http://<?php echo $ruta;?>/SGP/web/remisiones/ABMremision.php";
 		</script>');
-            header("Refresh:0; url=http://localhost/SGP/web/remisiones/ABMremision.php");
+            header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/remisiones/ABMremision.php");
 	}

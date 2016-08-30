@@ -51,7 +51,7 @@
                 $query = pg_query("delete from precintado where prec_cod=$codigo_precintado");
                 echo '<script type="text/javascript">
 		alert("El Precinto ya ha sido usado o no existe. Vuelva a Generar el Registro");
-                window.location="http://localhost/SGP/web/registrar_precintos/registrar_precintos.php";
+                window.location="http://<?php echo $ruta;?>/SGP/web/registrar_precintos/registrar_precintos.php";
 		</script>';
             }
             return $row1[0];
