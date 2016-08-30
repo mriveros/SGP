@@ -10,13 +10,10 @@ session_start();
 
  include '../web/funciones.php';
  
- conexionlocal();
-$usr= $_REQUEST['username'];
-$pwd=md5($_REQUEST['clave']);
-//$pwd= md5($pwd); esto usaremos despues para comparar carga que se realizara en md5
-//session_start();
-//print_r($_REQUEST);
-//INGRESO DE USUARIO
+       conexionlocal();
+       $usr= $_REQUEST['username'];
+       $pwd=md5($_REQUEST['clave']);
+       $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 	$sql= "SELECT * FROM usuarios usu ,puestos pues, puesto_usuario puesusu
         WHERE usu.usu_username = '$usr'
         and usu.usu_pass =('$pwd')
@@ -27,6 +24,7 @@ $pwd=md5($_REQUEST['clave']);
 	//echo $n.' ---'.$sql; 
 	$datosusr = pg_query($sql);
         $row = pg_fetch_array($datosusr);
+       
         $n=0;
         $n = count($row['usu_nom']);
 	if($n==0)
@@ -45,13 +43,13 @@ $pwd=md5($_REQUEST['clave']);
             $_SESSION["categoria_usuario"] = $row['cat_cod'];
             $_SESSION["puesto_usuario"] = $row['pues_cod'];
             if ($row['cat_cod']==1){
-                 header("Location:http://<?php echo $ruta;?>/SGP/web/menu_principal.php");
+                 header("Location:http://$ruta/SGP/web/menu_principal.php");
                  
             }else if($row['cat_cod']==2){
-                header("Location:http://<?php echo $ruta;?>/SGP/web/menu_usuario.php");
+                header("Location:http://$ruta/SGP/web/menu_usuario.php");
                  
             
             }else if($row['cat_cod']==3){
-                 header("Location:http://<?php echo $ruta;?>/SGP/web/menu_supervisor.php");
+                 header("Location:http://$ruta/SGP/web/menu_supervisor.php");
             }
         }
