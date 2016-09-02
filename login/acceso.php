@@ -13,7 +13,7 @@ session_start();
        conexionlocal();
        $usr= $_REQUEST['username'];
        $pwd=md5($_REQUEST['clave']);
-       $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+       $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 	$sql= "SELECT * FROM usuarios usu ,puestos pues, puesto_usuario puesusu
         WHERE usu.usu_username = '$usr'
         and usu.usu_pass =('$pwd')
