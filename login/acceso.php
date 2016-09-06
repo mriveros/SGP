@@ -4,8 +4,8 @@ session_start();
 <?php
 /*
  * Autor: Marcos A. Riveros.
- * Año: 2015
- * Sistema de Estaciones ONM INTN
+ * Año: 2016
+ * Sistema de Gestion de Precintos ONM-INTN
  */
 
  include '../web/funciones.php';

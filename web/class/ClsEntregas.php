@@ -2,7 +2,7 @@
 
 /*
  * Autor: Marcos A. Riveros.
- * Año: 2015
+ * Año: 2016
  * Sistema de Precintos INTN
  */    
 session_start();
