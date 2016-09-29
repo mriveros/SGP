@@ -9,7 +9,7 @@
     $puesto_usuario= $_SESSION["puesto_usuario"];
     include '../funciones.php';
     conexionlocal();
-     
+      $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
         
     
           //Datos de Cabecera
@@ -75,7 +75,7 @@
             $codigo_encargado,'$transportista','now()', $alcohol,
             $nafta90, $codusuario,'t','$destino',$codigo_precintador);";
     $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
-    header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/registrar_precintos/registrar_precintos.php");   
+    header("Refresh:0; url=http://$ruta/SGP/web/registrar_precintos/registrar_precintos.php");   
     
     //Insertamos los detalles
     $codigo_precintado=obtenerUltimo('precintado','prec_cod');
@@ -272,7 +272,7 @@
         pg_query($query)or die('Error al realizar la carga. Error: '.$query); 
      }
     //preparar para la impresion del registro de precintado
-    header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/informes/Imp_registro_impresion.php?codigo_precintado=$codigo_precintado");
+    header("Refresh:0; url=http://$ruta/SGP/web/informes/Imp_registro_impresion.php?codigo_precintado=$codigo_precintado");
     }
           
        

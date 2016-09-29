@@ -1,5 +1,6 @@
 <?php 
 	session_start(); 
 	session_destroy(); 
-	header("Location:http://<?php echo $ruta;?>/SGP/login/acceso.html");
+        $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+	header("Location:http://$ruta/SGP/login/acceso.html");
 ?>

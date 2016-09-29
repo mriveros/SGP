@@ -6,7 +6,7 @@
  */
 session_start();
 $codusuario=  $_SESSION["codigo_usuario"];
-
+ $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 include '../funciones.php';
 conexionlocal();
     
@@ -46,7 +46,7 @@ conexionlocal();
                 $codigo_precio=obtenerUltimo('precios', 'pre_cod');
                 $query ="update precios set pre_activo='f' where pre_cod<>$codigo_precio";
                 pg_query($query)or die('Error al realizar la carga'.$query);
-                header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/precios/ABMprecio.php");
+                header("Refresh:0; url=http://$ruta/SGP/web/precios/ABMprecio.php");
                 }
             }
             
@@ -56,12 +56,12 @@ conexionlocal();
             
             pg_query("update precios set pre_des='$descripcionM',precio1= $precio1,precio2= $precio2,precio3= $precio3,pre_activo='$estadoM'
                     WHERE pre_cod=$codigoModif");
-            header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/precios/ABMprecio.php");
+            header("Refresh:0; url=http://$ruta/SGP/web/precios/ABMprecio.php");
         }
         
 
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update precios set pre_activo='f' WHERE pre_cod=$codigoElim");
-            header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/precios/ABMprecio.php");
+            header("Refresh:0; url=http://$ruta/SGP/web/precios/ABMprecio.php");
 	}
