@@ -1,8 +1,7 @@
-<?php 
+<?php
 session_start();
 if(!isset($_SESSION['codigo_usuario']))
-$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
-header("Location:http://$ruta/SGP/login/acceso.html");
+header("Location:http://<?php echo $ruta;?>/SGP/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
 
 ?>
@@ -128,7 +127,7 @@ $catego=  $_SESSION["categoria_usuario"];
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {
-                        $estado=$row1["estado"];
+                        $estado=$row1["usu_activo"];
                         if($estado=='t'){$estado='Activo';}else{$estado='Inactivo';}
                         echo "<tr><td style='display:none'>".$row1["usu_cod"]."</td>";
                         echo "<td>".$row1["usu_nom"]."</td>";

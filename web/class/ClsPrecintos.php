@@ -8,7 +8,7 @@
     $codusuario=  $_SESSION["codigo_usuario"];
     include '../funciones.php';
     conexionlocal();
-    $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";    
+    $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";    
         
     
             //recupera los datos del form

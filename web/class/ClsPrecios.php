@@ -6,7 +6,7 @@
  */
 session_start();
 $codusuario=  $_SESSION["codigo_usuario"];
- $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+ $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 include '../funciones.php';
 conexionlocal();
     

@@ -9,7 +9,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
 $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
     include '../funciones.php';
     conexionlocal();
-     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
     //Datos del Form Agregar
     if  (empty($_POST['txtNombreA'])){$nombreA='';}else{ $nombreA = $_POST['txtNombreA'];}
     if  (empty($_POST['txtCuentaA'])){$cuentaA='';}else{ $cuentaA = $_POST['txtCuentaA'];}

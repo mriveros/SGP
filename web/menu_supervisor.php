@@ -6,7 +6,7 @@
     //$aprobados=pg_result($consulta,0,'aprobados');
     //$reprobados=pg_result($consulta,0,'reprobados');
     //$clausurados=pg_result($consulta,0,'clausurados');
-     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 ?>
 <!DOCTYPE html>
 <html lang="es">

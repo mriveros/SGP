@@ -9,7 +9,7 @@
     $puesto_usuario= $_SESSION["puesto_usuario"];
     include '../funciones.php';
     conexionlocal();
-      $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+      $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
         
     
           //Datos de Cabecera

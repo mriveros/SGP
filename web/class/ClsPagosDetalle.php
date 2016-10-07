@@ -13,7 +13,7 @@
  $resultado=pg_query($query);
  $row=  pg_fetch_array($resultado);
  $codcabecera=$row[0];
- $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+ $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 //------------------------Agregar-----------------------------------------------
  if(isset($_POST['agregar'])){
      
