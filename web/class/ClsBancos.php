@@ -39,7 +39,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 //ejecucion del query
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
-                header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/bancos/ABMbanco.php");
+                header("Refresh:0; url=http://$ruta/SGP/web/bancos/ABMbanco.php");
                 }
             }
         //si es Modificar    
@@ -50,10 +50,10 @@ $codusuario=  $_SESSION["codigo_usuario"];
                     . "ban_activo='$estadoM' "
                     . "WHERE ban_cod=$codigoModif");
             $query = '';
-            header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/bancos/ABMbanco.php");
+            header("Refresh:0; url=http://$ruta/SGP/web/bancos/ABMbanco.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("update bancos set ban_activo='f' WHERE ban_cod=$codigoElim");
-            header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/bancos/ABMbanco.php");
+            header("Refresh:0; url=http://$ruta/SGP/web/bancos/ABMbanco.php");
 	}

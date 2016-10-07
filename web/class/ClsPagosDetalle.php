@@ -12,6 +12,7 @@
  $resultado=pg_query($query);
  $row=  pg_fetch_array($resultado);
  $codcabecera=$row[0];
+ $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 //------------------------Agregar-----------------------------------------------
  if(isset($_POST['agregar'])){
      
@@ -21,7 +22,7 @@
                 . "VALUES ($codcabecera,$producto,$precio,$tipoDetalleM);";
         pg_query($query)or die('Error al cargar el detalle');
         calcularMonto($codcabecera);
-        header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/orden_pagos/IngDetalle.php");
+        header("Refresh:0; url=http://$ruta/SGP/web/orden_pagos/IngDetalle.php");
         
     
 
@@ -30,7 +31,7 @@
   if(isset($_POST['borrar'])){
         pg_query("delete from pagos_detalles WHERE pagdet_cod=$codigoDetalle");
         calcularMonto($codcabecera);
-        header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/orden_pagos/IngDetalle.php");
+        header("Refresh:0; url=http://$ruta/SGP/web/orden_pagos/IngDetalle.php");
   }
   
   function calcularMonto( $codcabecera){

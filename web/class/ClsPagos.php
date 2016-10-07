@@ -8,7 +8,7 @@ session_start();
 $codusuario=  $_SESSION["codigo_usuario"];
     include '../funciones.php';
     conexionlocal();
-    
+     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
     //Datos del Form Agregar
 
     if  (empty($_POST['txtCodigo'])){$codigoA='';}else{ $codigoA = $_POST['txtCodigo'];}
@@ -38,16 +38,16 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 $resultado=pg_query($query);
                 $row=  pg_fetch_array($resultado);
                 $ejecucion = pg_query("update cuentas set cuen_anterior=cuen_saldo, cuen_saldo=cuen_saldo-$montoA WHERE cuen_cod=$cuentaA")or die('Error al realizar la carga'); 
-                header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/orden_pagos/OrdenPago.php");
+                header("Refresh:0; url=http://$ruta/SGP/web/orden_pagos/OrdenPago.php");
                }
            else{
                 echo '<script type="text/javascript">
 		alert("El Monto a Pagar es mayor que la disponible.Intente pagar con otra cuenta o comuniquese con el administrador");
-                window.location="http://<?php echo $ruta;?>/SGP/web/orden_pagos/OrdenPago.php";
+                window.location="http://$ruta/SGP/web/orden_pagos/OrdenPago.php";
 		</script>'; 
                 
            }
-                header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/orden_pagos/OrdenPago.php");
+                header("Refresh:0; url=http://$ruta/SGP/web/orden_pagos/OrdenPago.php");
                 
      }
     

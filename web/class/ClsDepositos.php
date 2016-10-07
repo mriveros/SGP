@@ -9,7 +9,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
 
     include '../funciones.php';
     conexionlocal();
-    
+     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
     //Datos del Form Agregar
     if  (empty($_POST['txtNombreA'])){$nombreA='';}else{ $nombreA = $_POST['txtNombreA'];}
     if  (empty($_POST['txtCuentaA'])){$cuentaA='';}else{ $cuentaA = $_POST['txtCuentaA'];}
@@ -36,7 +36,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
             if(func_existeDato($nombreA, 'depositos', 'dep_nom')==true){
                 echo '<script type="text/javascript">
 		alert("El Deposito ya existe. Ingrese otro Deposito.");
-                window.location="http://<?php echo $ruta;?>/SGP/web/dependencias/ABMdependencia.php";
+                window.location="http://$ruta/SGP/web/dependencias/ABMdependencia.php";
 		</script>';
                 }else{              
                 //se define el Query   
@@ -46,7 +46,7 @@ $codusuario=  $_SESSION["codigo_usuario"];
                 $ejecucion = pg_query($query)or die('Error al realizar la carga');
                 $query = '';
                 sumarCuenta($cuentaA,$montoA);
-                header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/depositos/ABMdeposito.php");
+                header("Refresh:0; url=http://$ruta/SGP/web/depositos/ABMdeposito.php");
                 }
             }
         //si es Modificar    
@@ -60,13 +60,13 @@ $codusuario=  $_SESSION["codigo_usuario"];
                     . "WHERE dep_cod=$codigoModif");
             $query = '';
             modificarCuenta($codigoModif,$montoM);
-            header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/depositos/ABMdeposito.php");
+            header("Refresh:0; url=http://$ruta/SGP/web/depositos/ABMdeposito.php");
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
             pg_query("delete from depositos WHERE dep_cod=$codigoElim");
             restablecerCuenta($codigoElim);
-            header("Refresh:0; url=http://<?php echo $ruta;?>/SGP/web/depositos/ABMdeposito.php");
+            header("Refresh:0; url=http://$ruta/SGP/web/depositos/ABMdeposito.php");
             
 	}
         //esta funcion se realiza al realizar un nuevo deposito
