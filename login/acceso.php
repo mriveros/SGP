@@ -4,8 +4,8 @@ session_start();
 <?php
 /*
  * Autor: Marcos A. Riveros.
- * Año: 2015
- * Sistema de Estaciones ONM INTN
+ * Año: 2016
+ * Sistema de Gestion de Precintos ONM-INTN
  */
 
  include '../web/funciones.php';
@@ -13,7 +13,7 @@ session_start();
        conexionlocal();
        $usr= $_REQUEST['username'];
        $pwd=md5($_REQUEST['clave']);
-       $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+       $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 	$sql= "SELECT * FROM usuarios usu ,puestos pues, puesto_usuario puesusu
         WHERE usu.usu_username = '$usr'
         and usu.usu_pass =('$pwd')

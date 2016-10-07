@@ -15,7 +15,7 @@ function Footer()
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
     if  (empty($_POST['txtEmblema'])){$emblema=0;}else{$emblema=$_POST['txtEmblema'];}
-    $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
+    $conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select em_des from emblemas where em_cod=$emblema"); 
     $row1 = pg_fetch_array($consulta);
@@ -70,7 +70,7 @@ function Header()
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
     if  (empty($_POST['txtEmblema'])){$emblema=0;}else{$emblema=$_POST['txtEmblema'];}
-    $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
+    $conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select em_des from emblemas where em_cod=$emblema"); 
     $row1 = pg_fetch_array($consulta);
@@ -109,7 +109,7 @@ $pdf=new PDF();//'P'=vertical o 'L'=horizontal,'mm','A4' o 'Legal'
     if  (empty($_POST['txtDesdeFecha'])){$fechadesde='00/00/0000';}else{$fechadesde=$_POST['txtDesdeFecha'];}
     if  (empty($_POST['txtHastaFecha'])){$fechahasta='00/00/0000';}else{$fechahasta=$_POST['txtHastaFecha'];}
     if  (empty($_POST['txtEmblema'])){$emblema=0;}else{$emblema=$_POST['txtEmblema'];}
-    $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
+    $conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select em_des from emblemas where em_cod=$emblema"); 
     $row1 = pg_fetch_array($consulta);

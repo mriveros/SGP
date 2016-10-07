@@ -42,7 +42,7 @@ function Header()
     
     if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
     
-    $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
+    $conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select pre.prec_cod,pues.pues_des,pre.prec_fecha,em.em_des,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
@@ -147,7 +147,7 @@ $pdf->AddPage();
 //------------------------RECIBIMOS LOS VALORES DE GET-----------
 if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
+$conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select pre_nro from precintado_detalle where prec_cod=20");
 $row1 = pg_fetch_array($consulta);
@@ -275,7 +275,7 @@ $pdf->SetFont('Arial','',10);
 $pdf->text(40,278,'....................................................................................................................................................');
 $pdf->text(10,282,'..................................................................................................................................................................................');
 $pdf->text(10,286,'..................................................................................................................................................................................');
-$pdf->Output("Precintado_".$codPago,"I");
+$pdf->Output("Precintado_".$codigo_precintado,"I");
 $pdf->Close();
 
   function get_CantidadLetras($m) { 

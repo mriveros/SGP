@@ -1,11 +1,12 @@
 <?php
 /*
  * Autor: Marcos A. Riveros.
- * Año: 2015
- * Sistema de Compras y Pagos SGP INTN
+ * Año: 2016
+* Sistema de Gestion de Precintos ONM-INTN
  */
 session_start();
 $codusuario=  $_SESSION["codigo_usuario"];
+$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
     include '../funciones.php';
     conexionlocal();
      $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";

@@ -1,6 +1,7 @@
 <?php
  include '../funciones.php';
  conexionlocal();
+ $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
  if  (empty($_POST['codigo'])){$codigoCompra='';}else{$codigoCompra=$_POST['codigo'];}
  if  (empty($_POST['txtProductoA'])){$producto='';}else{$producto=$_POST['txtProductoA'];}
  if  (empty($_POST['txtCantidadA'])){$cantidad='';}else{$cantidad=$_POST['txtCantidadA'];}

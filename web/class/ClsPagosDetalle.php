@@ -8,6 +8,7 @@
  if  (empty($_POST['txtEstadoM'])){$tipoDetalleM=0 ;}else{ $tipoDetalleM= $_POST['txtEstadoM'];}
 
 //-------------------Obtenemos el codigo de Cabecera----------------------------
+ $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
  $query = "Select max(pag_cod) from pagos_creados;";
  $resultado=pg_query($query);
  $row=  pg_fetch_array($resultado);
