@@ -3,7 +3,8 @@ session_start();
 if(!isset($_SESSION['codigo_usuario']))
 header("Location:http://<?php echo $ruta;?>/SGP/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
-
+$nombre_usuario=$_SESSION["nombre_usuario"];
+$codigo_usuario=$_SESSION["codigo_usuario"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -102,15 +103,16 @@ $catego=  $_SESSION["categoria_usuario"];
                         
                         <div class="panel-heading">
                            <div class="row">
-                              
-                            <div class="col-md-6">
-                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nro Remisión</label>
+                              <div class="col-md-6">
+                                         
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Fecha</label>
                                             <div class="col-sm-10">
-                                            <input type="number" name="txtRemisionA" class="form-control" id="txtRemisionA" placeholder="ingrese número remisión" required="true"/>
+                                            <input type="date" name="txtfecha" class="form-control" id="txtfecha" required="true" value="<?php echo date("Y-m-d");?>">
                                             </div>
 					</div>
                             </div>
+                            
                             <div class="col-md-6">
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input01">Emblema</label>
@@ -119,7 +121,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                                 <?php
                                                 //esto es para mostrar un select que trae datos de la BDD
                                                 conexionlocal();
-                                                $query = "select em_cod, em_des from emblemas where em_activo='t'";
+                                                $query = "select em_cod, em_nom from emblemas where em_activo='t'";
                                                 $resultadoSelect = pg_query($query);
                                                 while ($row = pg_fetch_row($resultadoSelect)) {
                                                 echo "<option value=".$row[0].">";
@@ -135,15 +137,15 @@ $catego=  $_SESSION["categoria_usuario"];
                                
                       </div>
                       <div class="row">
-                            <div class="col-md-6">
-                                         
-                                        <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nro Bibliorato</label>
+                          <div class="col-md-6">
+                                         <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Nro Remisión</label>
                                             <div class="col-sm-10">
-                                            <input type="number" name="txtNroBiblioratoA" class="form-control" id="txtNroBiblioratoA" placeholder="ingrese número bibliorato" required="true"/>
+                                            <input type="number" name="txtRemisionA" class="form-control" id="txtRemisionA" placeholder="ingrese número remisión" required="true"/>
                                             </div>
 					</div>
                             </div>
+                            
                             
                                
                             <div class="col-md-6">
@@ -153,14 +155,11 @@ $catego=  $_SESSION["categoria_usuario"];
                                            <select name="txtEncargadoA" class="form-control" id="txtEncargadoA" required="true">
                                                 <?php
                                                 //esto es para mostrar un select que trae datos de la BDD
-                                                conexionlocal();
-                                                $query = "select en_cod, en_nom||' '||en_ape  from encargado where en_activo='t'";
-                                                $resultadoSelect = pg_query($query);
-                                                while ($row = pg_fetch_row($resultadoSelect)) {
-                                                echo "<option value=".$row[0].">";
-                                                echo $row[1];
+                                                
+                                                echo "<option value=".$codigo_usuario.">";
+                                                echo $nombre_usuario;
                                                 echo "</option>";
-                                                }
+                                                
                                                 ?>
                                              </select>
                                             </div>

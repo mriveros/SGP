@@ -38,10 +38,11 @@ session_start();
 	{
            
             $_SESSION["username"] = $row['usu_nick'];
-            $_SESSION["nombre_usuario"] = $row['usu_nom'];
+            $_SESSION["nombre_usuario"] = $row['usu_nom'].' '.$row['usu_ape'];
             $_SESSION["codigo_usuario"] = $row['usu_cod'];
             $_SESSION["categoria_usuario"] = $row['cat_cod'];
             $_SESSION["puesto_usuario"] = $row['pues_cod'];
+            
             if ($row['cat_cod']==1){
                  header("Location:http://$ruta/SGP/web/menu_principal.php");
                  

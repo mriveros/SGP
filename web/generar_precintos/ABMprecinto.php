@@ -116,7 +116,7 @@ $codigo_usuario=$_SESSION['codigo_usuario'];
                      and pre.en_cod=en.en_cod
                      and pues.pues_cod=puesusu.pues_cod
                      and usu.usu_cod=puesusu.usu_cod
-                     and usu.usu_cod=$codigo_usuario";
+                     and usu.usu_cod=$codigo_usuario and pre_activo='t'";
                     $result = pg_query($query) or die ("Error al realizar la consulta");
                     while($row1 = pg_fetch_array($result))
                     {

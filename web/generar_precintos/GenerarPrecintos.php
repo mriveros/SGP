@@ -56,9 +56,11 @@ $codigo_usuario=$_SESSION['codigo_usuario'];
     </script>
 	<script type="text/javascript">
 		function eliminar(codigo){
+                   
 			document.getElementById("txtCodigoE").value = codigo;
 		};
                 function generar(codigo){
+                    alert(codigo);
 			document.getElementById("txtCodigoGenerar").value = codigo;
 		};
 	</script>
@@ -115,7 +117,7 @@ $codigo_usuario=$_SESSION['codigo_usuario'];
                                     </thead>
                                     <tbody>
                     <?php
-                    $query = "select en.en_cod, en_des, rem_des,pues_des,enc.en_nom||' '||enc.en_ape as nombre, en.en_cantidad, en.en_nro_inicio,en.en_nro_fin,to_char(en.en_fecha,'DD/MM/YYYY' )as fecha, en.en_activo 
+                    $query = "select en.en_cod, en_des,rem.rem_cod, rem_des,pues_des,enc.en_nom||' '||enc.en_ape as nombre, en.en_cantidad, en.en_nro_inicio,en.en_nro_fin,to_char(en.en_fecha,'DD/MM/YYYY' )as fecha, en.en_activo 
                         from entrega en,encargado enc,puestos pues, remisiones rem,usuarios usu,puesto_usuario puesusu
                     where en.enc_cod=enc.en_cod
                     and en.pues_cod=pues.pues_cod
@@ -141,7 +143,7 @@ $codigo_usuario=$_SESSION['codigo_usuario'];
                         echo "<td>";?>
                         
                        <a onclick='generar(<?php echo $row1["en_cod"];?>)' class="btn btn-success btn-xs active" data-toggle="modal" data-target="#modalgenerar" role="button">Generar!</a>
-                        <a onclick='eliminar(<?php echo $row1["en_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
+                       <a onclick='eliminar(<?php echo $row1["en_cod"];?>)' class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#modalbor" role="button">Borrar</a>
                         <?php
                         echo "</td></tr>";
                     }

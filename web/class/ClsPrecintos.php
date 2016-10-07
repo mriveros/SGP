@@ -48,5 +48,14 @@
                 $ejecucion = pg_query($query)or die ('<script type="text/javascript">alert("Error al Anular el Precinto.Intente mas tarde..");</script>');
                 header("Refresh:0; url=http://$ruta/SGP/web/generar_precintos/ABMprecinto.php");
             }
+            
+            
+          if(isset($_POST['borrar'])){
+                conexionlocal();
+                reestablecerEntrega($codigo);
+                $query = "delete from entrega where en_cod=$codigo;";
+                $ejecucion = pg_query($query)or die ('<script type="text/javascript">alert("Error al Eliminar la Entrega.Intente mas tarde..");</script>');
+                header("Refresh:0; url=http://$ruta/SGP/web/generar_precintos/ABMprecinto.php");
+            }
        //
         ?>

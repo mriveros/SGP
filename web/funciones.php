@@ -261,5 +261,14 @@
                return "El codigo de Precintador no Existe..!";
             }
         }
+        function reestablecerEntrega($codigo){
+            conexionlocal();
+            $query = "select en_cantidad, rem_cod from entrega where en_cod = $codigo";
+            $result = pg_query($query) or die ("Error al realizar la consulta");
+            $row=pg_fetch_row($result);
+            $cantidad_precintos=$row[0];
+            $codigo_remision=$row[1];
+             $query = "update remisiones set rem_stock_actual=rem_stock_actual+$cantidad_precintos where rem_cod = $codigo_remision";
+        }
       
 
