@@ -13,7 +13,7 @@ session_start();
        conexionlocal();
        $usr= $_REQUEST['username'];
        $pwd=md5($_REQUEST['clave']);
-       $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+        $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 	$sql= "SELECT * FROM usuarios usu ,puestos pues, puesto_usuario puesusu
         WHERE usu.usu_username = '$usr'
         and usu.usu_pass =('$pwd')
@@ -31,7 +31,7 @@ session_start();
 	{
 		echo '<script type="text/javascript">
                          alert("Nombre de Usuario o Password no valido..!");
-			 window.location="http://<?php echo $ruta;?>/SGP/login/acceso.html";
+			 window.location="http://'.$ruta.'/SGP/login/acceso.html";
                       </script>';
 	}
 	else

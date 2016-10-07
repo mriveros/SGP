@@ -42,9 +42,9 @@ function Header()
     
     if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
     
-    $conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    $consulta=pg_exec($conectate,"select pre.prec_cod,pues.pues_des,pre.prec_fecha,em.em_des,pre.cam_cod,
+    $consulta=pg_exec($conectate,"select pre.prec_cod,pre.prec_nrorem,pre.prec_nrobib,pues.pues_des,pre.prec_fecha,em.em_des,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
         pre.prec_nafta95,pre.prec_kerosene,pre.prec_turbo,pre.prec_avigas,pre.prec_fueloil,
         pre.prec_alcohol,pre.prec_nafta90,pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
@@ -76,6 +76,8 @@ function Header()
     $letra_cantidad=get_CantidadLetras($cantidad);
     $precintador=$row1['precintador'];
     $encargado=$row1['encargado'];
+    $nro_remision=$row1['prec_nrorem'];
+    $nro_bibliorato=$row1['prec_nrobib'];
     //table header CABECERA        
     $this->SetFont('Arial','',10);
     $this->SetTitle('Precintado');
@@ -93,7 +95,10 @@ function Header()
     $this->text(143,45,$fecha);
     $this->text(130,50,utf8_decode('Código de Camión Cisterna:'));
     $this->text(175,50,$codigo_camion);
-    
+    $this->text(130,55,utf8_decode('Acta Nro.:'));
+    $this->text(148,55,$nro_remision);
+    $this->text(130,60,utf8_decode('Nro. Bibliorato:'));
+    $this->text(155,60,$nro_bibliorato);
     //-----------------------Datos Adjuntos-----------------------------------
     $this->Line(200,65,10,65);//largor,ubicacion derecha,inicio,ubicacion izquierda
     $this->Line(10,65,10,40);//largor,ubicacion derecha,inicio,ubicacion izquierda
@@ -147,7 +152,7 @@ $pdf->AddPage();
 //------------------------RECIBIMOS LOS VALORES DE GET-----------
 if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
+$conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
 $consulta=pg_exec($conectate,"select pre_nro from precintado_detalle where prec_cod=20");
 $row1 = pg_fetch_array($consulta);

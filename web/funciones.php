@@ -12,7 +12,7 @@
         //conecta al 192.168.56.100
         function conexionlocal()
         {
-            return $dbconn = pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres "
+            return $dbconn = pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres "
                     . "")or die ('no se pudo conectar a la base de datos');
         } 
         //funcion que selecciona a la base de Datos

@@ -43,7 +43,7 @@ function Header()
     
    if  (empty($_POST['txtPrecinto'])){$nro_precinto=0;}else{$nro_precinto=$_POST['txtPrecinto'];}
     
-    $conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
+    $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select pre.prec_cod,pues.pues_des,pre.prec_fecha,em.em_des,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
@@ -149,7 +149,7 @@ $pdf->AddPage();
 //------------------------RECIBIMOS LOS VALORES DE GET-----------
 if  (empty($_POST['txtPrecinto'])){$nro_precinto=0;}else{$nro_precinto=$_POST['txtPrecinto'];}
 //------------------------QUERY and data cargue y se reciben los datos-----------
-$conectate=pg_connect("host=www.intn.gov.py port=5432 dbname=SGP user=postgres password=postgres"
+$conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
  $consulta=pg_exec($conectate,"select pre.prec_cod from precintado pre,precintado_detalle predet
 where pre.prec_cod=predet.prec_cod and predet.pre_nro=$nro_precinto");
