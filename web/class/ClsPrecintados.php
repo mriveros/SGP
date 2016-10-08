@@ -9,9 +9,6 @@
     $puesto_usuario= $_SESSION["puesto_usuario"];
     include '../funciones.php';
     conexionlocal();
-      $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
-        
-    
           //Datos de Cabecera
           if  (empty($_POST['txtCodigoE'])){$codigo=0;}else{$codigo=$_POST['txtCodigoE'];}
           if  (empty($_POST['txtfecha'])){$fecha='0000-00-00';}else{$fecha=$_POST['txtfecha'];}
@@ -77,7 +74,7 @@
             $codigo_encargado,'$transportista','$fecha', $alcohol,
             $nafta90, $codusuario,'t','$destino',$codigo_precintador);";
     $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
-    //header("Refresh:0; url=http://$ruta/SGP/web/registrar_precintos/registrar_precintos.php");   
+       
     
     //Insertamos los detalles
     $codigo_precintado=obtenerUltimo('precintado','prec_cod');

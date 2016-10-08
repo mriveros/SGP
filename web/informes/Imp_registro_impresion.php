@@ -40,10 +40,13 @@ function Header()
 	$this->Line(200,40,10,40);//largor,ubicacion derecha,inicio,ubicacion izquierda
     //------------------------RECIBIMOS LOS VALORES DE GET-----------
     
-    if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
+    //$codigo_precintado=obtenerUltimo('precintado','prec_cod');
     
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
+    $query = pg_query("select max(prec_cod) from precintado");
+    $row1 = pg_fetch_array($query);
+    $codigo_precintado=$row1[0];
     $consulta=pg_exec($conectate,"select pre.prec_cod,pre.prec_nrorem,pre.prec_nrobib,pues.pues_des,pre.prec_fecha,em.em_nom,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
         pre.prec_nafta95,pre.prec_kerosene,pre.prec_turbo,pre.prec_avigas,pre.prec_fueloil,
@@ -149,11 +152,14 @@ function Header()
 
 $pdf= new PDF();//'P'=vertical o 'L'=horizontal,'mm','A4' o 'Legal'
 $pdf->AddPage();
-//------------------------RECIBIMOS LOS VALORES DE GET-----------
-if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $codigo_precintado = $HTTP_GET_VARS["codigo_precintado"];}
+
+ 
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
+$query = pg_query("select max(prec_cod) from precintado");
+$row1 = pg_fetch_array($query);
+$codigo_precintado=$row1[0];
 $consulta=pg_exec("select pre_nro from precintado_detalle where prec_cod=$codigo_precintado");
 
 $precinto1=  pg_result($consulta,0,'pre_nro');

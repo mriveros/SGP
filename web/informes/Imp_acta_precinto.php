@@ -45,7 +45,7 @@ function Header()
     
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    $consulta=pg_exec($conectate,"select pre.prec_cod,pues.pues_des,pre.prec_fecha,em.em_nom,pre.cam_cod,
+    $consulta=pg_exec($conectate,"select pre.prec_cod,pre.prec_nrorem,pre.prec_nrobib,pues.pues_des,pre.prec_fecha,em.em_nom,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
         pre.prec_nafta95,pre.prec_kerosene,pre.prec_turbo,pre.prec_avigas,pre.prec_fueloil,
         pre.prec_alcohol,pre.prec_nafta90,pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
@@ -78,6 +78,8 @@ function Header()
     $letra_cantidad=get_CantidadLetras($cantidad);
     $precintador=$row1['precintador'];
     $encargado=$row1['encargado'];
+    $nro_remision=$row1['prec_nrorem'];
+    $nro_bibliorato=$row1['prec_nrobib'];
     //table header CABECERA        
     $this->SetFont('Arial','',10);
     $this->SetTitle('Precintado');
