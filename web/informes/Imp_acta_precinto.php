@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 require('./fpdf.php');
 include '../MonedaTexto.php';
 global $codigo_precintado;  
@@ -45,7 +45,7 @@ function Header()
     
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    $consulta=pg_exec($conectate,"select pre.prec_cod,pues.pues_des,pre.prec_fecha,em.em_des,pre.cam_cod,
+    $consulta=pg_exec($conectate,"select pre.prec_cod,pues.pues_des,pre.prec_fecha,em.em_nom,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
         pre.prec_nafta95,pre.prec_kerosene,pre.prec_turbo,pre.prec_avigas,pre.prec_fueloil,
         pre.prec_alcohol,pre.prec_nafta90,pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
@@ -60,7 +60,7 @@ function Header()
     $row1 = pg_fetch_array($consulta);
     $puesto=$row1['pues_des'];
     $fecha=$row1['prec_fecha'];
-    $emblema=$row1['em_des'];
+    $emblema=$row1['em_nom'];
     $codigo_camion=$row1['cam_cod'];
     $destino=$row1['prec_destino'];
     $gasoil=$row1['prec_gasoil'];
@@ -95,6 +95,10 @@ function Header()
     $this->text(143,45,$fecha);
     $this->text(130,50,utf8_decode('Código de Camión Cisterna:'));
     $this->text(175,50,$codigo_camion);
+     $this->text(130,55,utf8_decode('Acta Nro.:'));
+    $this->text(148,55,$nro_remision);
+    $this->text(130,60,utf8_decode('Nro. Bibliorato:'));
+    $this->text(155,60,$nro_bibliorato);
     
     //-----------------------Datos Adjuntos-----------------------------------
     $this->Line(200,65,10,65);//largor,ubicacion derecha,inicio,ubicacion izquierda

@@ -5,7 +5,7 @@
  * Año: 2015
  * Sistema de Precintos INTN
  */    
-session_start();
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 $codusuario=  $_SESSION["codigo_usuario"];
  $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
     include '../funciones.php';

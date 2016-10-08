@@ -4,7 +4,7 @@
  * Año: 2015
  * Sistema de Precintos INTN
  */
-    session_start();
+    session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
     $codusuario=  $_SESSION["codigo_usuario"];
     $puesto_usuario= $_SESSION["puesto_usuario"];
     include '../funciones.php';
@@ -14,9 +14,10 @@
     
           //Datos de Cabecera
           if  (empty($_POST['txtCodigoE'])){$codigo=0;}else{$codigo=$_POST['txtCodigoE'];}
+          if  (empty($_POST['txtfecha'])){$fecha='0000-00-00';}else{$fecha=$_POST['txtfecha'];}
           if  (empty($_POST['txtRemisionA'])){$remision=0;}else{$remision=$_POST['txtRemisionA'];}
           if  (empty($_POST['txtEmblemaA'])){$emblema=0;}else{$emblema=$_POST['txtEmblemaA'];}
-          if  (empty($_POST['txtNroBiblioratoA'])){$bibliorato=0;}else{$bibliorato=$_POST['txtNroBiblioratoA'];}
+          if  (empty($_POST['txtRemisionA'])){$bibliorato=0;}else{$bibliorato=$_POST['txtRemisionA'];}
           if  (empty($_POST['txtEncargadoA'])){$codigo_encargado=0;}else{$codigo_encargado=$_POST['txtEncargadoA'];}
           if  (empty($_POST['txtCodCamionA'])){$codigo_camion=0;}else{$codigo_camion=$_POST['txtCodCamionA'];}
           if  (empty($_POST['txtTransportistaA'])){$transportista='';}else{$transportista=$_POST['txtTransportistaA'];}
@@ -32,6 +33,7 @@
           if  (empty($_POST['txtAvigasA'])){$avigas=0;}else{$avigas=$_POST['txtAvigasA'];}
           if  (empty($_POST['txtFueloil'])){$fueloil=0;}else{$fueloil=$_POST['txtFueloil'];}
           if  (empty($_POST['txtAlcoholA'])){$alcohol=0;}else{$alcohol=$_POST['txtAlcoholA'];}
+          
           //Datos de Detalle
            if  (empty($_POST['txtPrecinto1'])){$precinto1=0;}else{$precinto1=$_POST['txtPrecinto1'];}
            if  (empty($_POST['txtPrecinto2'])){$precinto2=0;}else{$precinto2=$_POST['txtPrecinto2'];}
@@ -72,10 +74,10 @@
     VALUES ($remision, $bibliorato, $puesto_usuario,$emblema, $codigo_camion, 
             $gasoil, $alconafta, $nafta85, $nafta95, $kerosene,
             $turbo, $avigas, $fueloil,
-            $codigo_encargado,'$transportista','now()', $alcohol,
+            $codigo_encargado,'$transportista','$fecha', $alcohol,
             $nafta90, $codusuario,'t','$destino',$codigo_precintador);";
     $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
-    header("Refresh:0; url=http://$ruta/SGP/web/registrar_precintos/registrar_precintos.php");   
+    //header("Refresh:0; url=http://$ruta/SGP/web/registrar_precintos/registrar_precintos.php");   
     
     //Insertamos los detalles
     $codigo_precintado=obtenerUltimo('precintado','prec_cod');
@@ -274,6 +276,6 @@
     //preparar para la impresion del registro de precintado
     header("Refresh:0; url=http://$ruta/SGP/web/informes/Imp_registro_impresion.php?codigo_precintado=$codigo_precintado");
     }
-          
+   
        
     ?>

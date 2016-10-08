@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 require('./fpdf.php');
 include '../MonedaTexto.php';
 class PDF extends FPDF{
@@ -44,7 +44,7 @@ function Header()
     
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-    $consulta=pg_exec($conectate,"select pre.prec_cod,pre.prec_nrorem,pre.prec_nrobib,pues.pues_des,pre.prec_fecha,em.em_des,pre.cam_cod,
+    $consulta=pg_exec($conectate,"select pre.prec_cod,pre.prec_nrorem,pre.prec_nrobib,pues.pues_des,pre.prec_fecha,em.em_nom,pre.cam_cod,
         pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
         pre.prec_nafta95,pre.prec_kerosene,pre.prec_turbo,pre.prec_avigas,pre.prec_fueloil,
         pre.prec_alcohol,pre.prec_nafta90,pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
@@ -54,11 +54,11 @@ function Header()
         and pre.em_cod=em.em_cod
         and pre.enc_cod=enc.en_cod
         and pre.preci_cod=preci.pre_cod
-        and pre.prec_cod=20");
+        and pre.prec_cod=26");
     $row1 = pg_fetch_array($consulta);
     $puesto=$row1['pues_des'];
     $fecha=$row1['prec_fecha'];
-    $emblema=$row1['em_des'];
+    $emblema=$row1['em_nom'];
     $codigo_camion=$row1['cam_cod'];
     $destino=$row1['prec_destino'];
     $gasoil=$row1['prec_gasoil'];
@@ -154,29 +154,29 @@ if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $c
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-$consulta=pg_exec($conectate,"select pre_nro from precintado_detalle where prec_cod=20");
-$row1 = pg_fetch_array($consulta);
-$precinto1=$row1[0];
-$precinto2=$row1[1];
-$precinto3=$row1[2];
-$precinto4=$row1[3];
-$precinto5=$row1[4];
-$precinto6=$row1[5];
-$precinto7=$row1[6];
-$precinto8=$row1[7];
-$precinto9=$row1[8];
-$precinto10=$row1[9];
-$precinto11=$row1[10];
-$precinto12=$row1[11];
-$precinto13=$row1[12];
-$precinto14=$row1[13];
-$precinto15=$row1[14];
-$precinto16=$row1[15];
-$precinto17=$row1[16];
-$precinto18=$row1[17];
-$precinto19=$row1[18];
-$precinto20=$row1[19];
-$precinto21=$row1[20];
+$consulta2=pg_query("select pre_nro from precintado_detalle where prec_cod=26");
+$row = pg_fetch_row($consulta2);
+$precinto1=$row[0];
+$precinto2=$row[1];
+$precinto3=$row[2];
+$precinto4=$row[3];
+$precinto5=$row[4];
+$precinto6=$row[5];
+$precinto7=$row[6];
+$precinto8=$row[7];
+$precinto9=$row[8];
+$precinto10=$row[9];
+$precinto11=$row[10];
+$precinto12=$row[11];
+$precinto13=$row[12];
+$precinto14=$row[13];
+$precinto15=$row[14];
+$precinto16=$row[15];
+$precinto17=$row[16];
+$precinto18=$row[17];
+$precinto19=$row[18];
+$precinto20=$row[19];
+$precinto21=$row[20];
 $pdf->AliasNbPages();
 $pdf->SetFont('Arial','B',8);
 $pdf->SetFillColor(224,235,255);
