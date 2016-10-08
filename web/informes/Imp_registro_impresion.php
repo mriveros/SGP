@@ -54,7 +54,7 @@ function Header()
         and pre.em_cod=em.em_cod
         and pre.enc_cod=enc.en_cod
         and pre.preci_cod=preci.pre_cod
-        and pre.prec_cod=26");
+        and pre.prec_cod=$codigo_precintado");
     $row1 = pg_fetch_array($consulta);
     $puesto=$row1['pues_des'];
     $fecha=$row1['prec_fecha'];
@@ -154,29 +154,29 @@ if  (empty($HTTP_GET_VARS["codigo_precintado"])){$codigo_precintado='';}else{ $c
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
-$consulta2=pg_query("select pre_nro from precintado_detalle where prec_cod=26");
-$row = pg_fetch_row($consulta2);
-$precinto1=$row[0];
-$precinto2=$row[1];
-$precinto3=$row[2];
-$precinto4=$row[3];
-$precinto5=$row[4];
-$precinto6=$row[5];
-$precinto7=$row[6];
-$precinto8=$row[7];
-$precinto9=$row[8];
-$precinto10=$row[9];
-$precinto11=$row[10];
-$precinto12=$row[11];
-$precinto13=$row[12];
-$precinto14=$row[13];
-$precinto15=$row[14];
-$precinto16=$row[15];
-$precinto17=$row[16];
-$precinto18=$row[17];
-$precinto19=$row[18];
-$precinto20=$row[19];
-$precinto21=$row[20];
+$consulta=pg_exec("select pre_nro from precintado_detalle where prec_cod=$codigo_precintado");
+
+$precinto1=  pg_result($consulta,0,'pre_nro');
+$precinto2=pg_result($consulta,1,'pre_nro');
+$precinto3=pg_result($consulta,2,'pre_nro');
+$precinto4=pg_result($consulta,3,'pre_nro');
+$precinto5=pg_result($consulta,4,'pre_nro');
+$precinto6=pg_result($consulta,5,'pre_nro');
+$precinto7=pg_result($consulta,6,'pre_nro');
+$precinto8=pg_result($consulta,7,'pre_nro');
+$precinto9=pg_result($consulta,8,'pre_nro');
+$precinto10=pg_result($consulta,9,'pre_nro');
+$precinto11=pg_result($consulta,10,'pre_nro');
+$precinto12=pg_result($consulta,11,'pre_nro');
+$precinto13=pg_result($consulta,12,'pre_nro');
+$precinto14=pg_result($consulta,13,'pre_nro');
+$precinto15=pg_result($consulta,14,'pre_nro');
+$precinto16=pg_result($consulta,15,'pre_nro');
+$precinto17=pg_result($consulta,16,'pre_nro');
+$precinto18=pg_result($consulta,17,'pre_nro');
+$precinto19=pg_result($consulta,18,'pre_nro');
+$precinto20=pg_result($consulta,19,'pre_nro');
+$precinto21=pg_result($consulta,20,'pre_nro');
 $pdf->AliasNbPages();
 $pdf->SetFont('Arial','B',8);
 $pdf->SetFillColor(224,235,255);
