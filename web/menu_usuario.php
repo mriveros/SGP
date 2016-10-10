@@ -142,7 +142,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="http://<?php echo $ruta;?>/SGP/web/menu_principal.php" value="Load new document" onclick="location.reload();"><i class="fa  fa-tasks"></i> Menu Principal</a>
+                            <a href="http://<?php echo $ruta;?>/SGP/web/menu_usuario.php" value="Load new document" onclick="location.reload();"><i class="fa  fa-tasks"></i> Menu Principal</a>
                         </li>
                        
                         <li>
