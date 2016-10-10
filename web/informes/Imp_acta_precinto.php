@@ -97,10 +97,10 @@ function Header()
     $this->text(143,45,$fecha);
     $this->text(130,50,utf8_decode('Código de Camión Cisterna:'));
     $this->text(175,50,$codigo_camion);
-     $this->text(130,55,utf8_decode('Acta Nro.:'));
-    $this->text(148,55,$nro_remision);
-    $this->text(130,60,utf8_decode('Nro. Bibliorato:'));
-    $this->text(155,60,$nro_bibliorato);
+    $this->text(130,55,utf8_decode('Nro. Remisión:'));
+    $this->text(155,55,$nro_remision);
+    //$this->text(130,60,utf8_decode('Nro. Bibliorato:'));
+    //$this->text(155,60,$nro_bibliorato);
     
     //-----------------------Datos Adjuntos-----------------------------------
     $this->Line(200,65,10,65);//largor,ubicacion derecha,inicio,ubicacion izquierda
