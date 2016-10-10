@@ -1,11 +1,5 @@
 <?php 
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres")or die ('Error al conectar a la base de datos');
-    //$consulta= pg_exec($conectate,"select sum(reg_cant)as cantidad,sum(reg_aprob) as aprobados,sum(reg_reprob)
-    //as reprobados,sum(reg_claus)as clausurados from registros where reg_fecha < now()");
-    //$cantidad=pg_result($consulta,0,'cantidad');
-    //$aprobados=pg_result($consulta,0,'aprobados');
-    //$reprobados=pg_result($consulta,0,'reprobados');
-    //$clausurados=pg_result($consulta,0,'clausurados');
      $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 ?>
 <!DOCTYPE html>
