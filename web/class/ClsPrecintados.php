@@ -271,7 +271,7 @@
         pg_query($query)or die('Error al realizar la carga. Error: '.$query); 
      }
     //preparar para la impresion del registro de precintado
-    header("Refresh:0; url=http://$ruta/SGP/web/informes/Imp_registro_impresion.php?codigo_precintado=$codigo_precintado");
+    header("Refresh:0; url=http://$ruta/SGP/web/informes/Imp_registro_impresion_matricial.php?codigo_precintado=$codigo_precintado");
     }
    
        

@@ -256,7 +256,7 @@
                             <a href="#"><i class="fa  fa-file-text "></i> INFORMES<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Imp_registro_impresion.php">Imprimir Registro</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Imp_registro_impresion_matricial.php">Imprimir Registro</a>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Busqueda_Precinto.php">Impresión/Búsqueda por Precinto</a>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Emblemas.php">Resumen por Emblemas</a> 
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Puestos.php">Resumen por Puestos</a> 

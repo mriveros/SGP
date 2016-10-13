@@ -41,7 +41,7 @@ function Header()
         and pre.em_cod=em.em_cod
         and pre.enc_cod=enc.en_cod
         and pre.preci_cod=preci.pre_cod
-        and pre.prec_cod=26");
+        and pre.prec_cod=$codigo_precintado");
     $row1 = pg_fetch_array($consulta);
     $puesto=$row1['pues_des'];
     $fecha=$row1['prec_fecha'];
@@ -125,7 +125,7 @@ $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres passwor
 $query = pg_query("select max(prec_cod) from precintado");
 $row1 = pg_fetch_array($query);
 $codigo_precintado=$row1[0];
-$consulta=pg_exec("select pre_nro from precintado_detalle where prec_cod=26");
+$consulta=pg_exec("select pre_nro from precintado_detalle where prec_cod=$codigo_precintado");
 
 $precinto1=  pg_result($consulta,0,'pre_nro');
 $precinto2=pg_result($consulta,1,'pre_nro');
