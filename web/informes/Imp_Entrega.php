@@ -1,5 +1,5 @@
 <?php 
-session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 ?>
 <?php
 //Example FPDF script with PostgreSQL

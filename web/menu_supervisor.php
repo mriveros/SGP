@@ -1,6 +1,6 @@
 <?php 
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres")or die ('Error al conectar a la base de datos');
-     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 ?>
 <!DOCTYPE html>
 <html lang="es">

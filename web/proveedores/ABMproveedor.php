@@ -1,5 +1,5 @@
 <?php 
-session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 if(!isset($_SESSION['codigo_usuario']))
 header("Location:http://$ruta/SGP/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
