@@ -7,7 +7,7 @@
 
     include '../funciones.php';
     conexionlocal();
-    $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+    $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
     //Datos del Form Agregar
     if  (empty($_POST['txtNombreA'])){$nombreA=0;}else{ $nombreA = $_POST['txtNombreA'];}
     if  (empty($_POST['txtApellidoA'])){$apellidoA='';}else{ $apellidoA= $_POST['txtApellidoA'];}
@@ -53,10 +53,6 @@
         }
         //Si es Eliminar
         if(isset($_POST['borrar'])){
-            echo '<script type="text/javascript">
-		alert("El Usuario ya existe. Intente ingresar otro Usuario");
-               
-		</script>';
             pg_query("update usuarios set usu_activo='f' WHERE usu_cod=$codigoElim");
             header("Refresh:0; url=http://$ruta/SGP/web/usuarios/ABMusuario.php");
 	}

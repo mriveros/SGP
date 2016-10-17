@@ -1,5 +1,5 @@
 <?php
-session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 require('./fpdf.php');
 include '../MonedaTexto.php';
 class PDF extends FPDF{

@@ -1,5 +1,5 @@
 <?php
-session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
 if(!isset($_SESSION['codigo_usuario']))
 header("Location:http://$ruta/SGP/login/acceso.html");
 $catego=  $_SESSION["categoria_usuario"];
@@ -58,10 +58,10 @@ $catego=  $_SESSION["categoria_usuario"];
 			$('tr').click(function() {
 			indi = $(this).index();
                         
-                       	var precio1=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
-			var precio2=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
-                        var precio3=document.getElementById("dataTables-example").rows[indi+1].cells[3].innerText;
-                        var descripcion=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
+                       	var precio1=document.getElementById("dataTables-example").rows[indi+1].cells[2].innerText;
+			var precio2=document.getElementById("dataTables-example").rows[indi+1].cells[3].innerText;
+                        var precio3=document.getElementById("dataTables-example").rows[indi+1].cells[4].innerText;
+                        var descripcion=document.getElementById("dataTables-example").rows[indi+1].cells[1].innerText;
                         //var estado=document.getElementById("dataTables-example").rows[indi+1].cells[5].innerText;
                         
                         document.getElementById("txtCodigo").value = codigo;
@@ -118,7 +118,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <th>Descripción</th>
                                             <th>Precio 1/7</th>
                                             <th>Precio 8/12</th>
-                                            <th>Precio 13/X</th>
+                                            <th>Precio 13/21</th>
                                             <th>Fecha</th>
                                             <th>Estado</th>
                                             <th>Accion</th>
@@ -204,7 +204,16 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <div class="col-sm-10">
                                             <input type="number" name="txtPrecio3A" class="form-control" id="txtPrecio3A" required='true'/>
                                             </div>
-					</div>	
+					</div>
+                                       
+                                         
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Desde</label>
+                                            <div class="col-sm-10">
+                                            <input type="date" name="txtfechaA" class="form-control" id="txtfechaA" required="true">
+                                            </div>
+					</div>
+                           
 				</div>
 				<!-- Modal Footer -->
 				<div class="modal-footer">
@@ -252,7 +261,13 @@ $catego=  $_SESSION["categoria_usuario"];
                                             <div class="col-sm-10">
                                             <input type="number" name="txtPrecio3M" class="form-control" id="txtPrecio3M" required='true'/>
                                             </div>
-					</div>	
+					</div>
+                                        <div class="form-group">
+                                            <label  class="col-sm-2 control-label" for="input01">Desde</label>
+                                            <div class="col-sm-10">
+                                            <input type="date" name="txtfechaM" class="form-control" id="txtfechaM" required="true">
+                                            </div>
+					</div>
                                         <div class="form-group">
                                             <label  class="col-sm-2 control-label" for="input03">Estado</label>
                                             <div class="col-sm-10">
