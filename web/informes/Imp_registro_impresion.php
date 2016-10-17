@@ -48,9 +48,16 @@ function Header()
     $row1 = pg_fetch_array($query);
     $codigo_precintado=$row1[0];
     $consulta=pg_exec($conectate,"select pre.prec_cod,pre.prec_nrorem,pre.prec_nrobib,pues.pues_des,pre.prec_fecha,em.em_nom,pre.cam_cod,
-        pre.prec_destino,pre.prec_cantprecinto,pre.prec_gasoil,pre.prec_alconafta,pre.prec_nafta85,
-        pre.prec_nafta95,pre.prec_kerosene,pre.prec_turbo,pre.prec_avigas,pre.prec_fueloil,
-        pre.prec_alcohol,pre.prec_nafta90,pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
+        pre.prec_destino,pre.prec_cantprecinto,
+        trunc(pre.prec_gasoil) as prec_gasoil ,
+        trunc(pre.prec_alconafta) as prec_alconafta ,
+        trunc(pre.prec_nafta85) as prec_nafta85,
+        trunc(pre.prec_nafta95) as prec_nafta95,
+        trunc(pre.prec_kerosene) as prec_kerosene,
+        trunc(pre.prec_turbo) as prec_turbo,
+        trunc(pre.prec_avigas) as prec_avigas,
+	trunc(pre.prec_fueloil) as prec_fueloil,
+        pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
         preci.pre_nom ||' ' ||preci.pre_ape as precintador,enc.en_nom ||' ' ||enc.en_ape as encargado
         from precintado pre, emblemas em, puestos pues, encargado enc,precintador preci
         where pre.pues_cod=pues.pues_cod
@@ -67,7 +74,6 @@ function Header()
     $gasoil=$row1['prec_gasoil'];
     $alconafta=$row1['prec_alconafta'];
     $nafta85=$row1['prec_nafta85'];
-    $nafta90=$row1['prec_nafta90'];
     $nafta95=$row1['prec_nafta95'];
     $kerosene=$row1['prec_kerosene'];
     $turbo=$row1['prec_turbo'];
@@ -81,6 +87,18 @@ function Header()
     $encargado=$row1['encargado'];
     $nro_remision=$row1['prec_nrorem'];
     $nro_bibliorato=$row1['prec_nrobib'];
+    
+    //Obtener color precintado--------------------------------------------------
+    $consulta=pg_exec($conectate,"select max(col.col_des)as color 
+        from precintado prec, precinto pre,color col,remisiones rem, entrega en,precintado_detalle predet
+        where rem.rem_cod=en.rem_cod
+	and rem.col_cod=col.col_cod
+	and en.en_cod=pre.en_cod
+	and prec.prec_cod=predet.prec_cod
+	and pre.pre_cod=predet.pre_cod
+        and prec.prec_cod=$codigo_precintado");
+    $row1 = pg_fetch_array($consulta);
+    $color=$row1['color'];
     //table header CABECERA        
     $this->SetFont('Arial','',10);
     $this->SetTitle('Precintado');
@@ -116,12 +134,10 @@ function Header()
     $this->text(10,78,'Gasoil:');
     $this->text(10,83,'Alconafta:');
     $this->text(10,88,'Nafta 85:');
-    $this->text(10,93,'Nafta 90:');
     $this->text(10,98,'Nafta 95:');
     $this->text(50,78,$gasoil);
     $this->text(50,83,$alconafta);
     $this->text(50,88,$nafta85);
-    $this->text(50,93,$nafta90);
     $this->text(50,98,$nafta95);
     $this->text(110,78,'Kerosene:');
     $this->text(110,83,'Turbo:');
@@ -135,7 +151,7 @@ function Header()
     
     $this->text(10,105  ,'Precintos aplicados al camion cisterna. Cantidad: '.$cantidad);
     $this->text(105,105,'('.$letra_cantidad.')');
-    
+    $this->text(145,105,'Color: '.$color);
     $this->Line(160,40,10,40);//largor,ubicacion derecha,inicio,ubicacion izquierda
     $this->text(10,180,'------------------------------ ');
     $this->text(80,180,'------------------------------ ');

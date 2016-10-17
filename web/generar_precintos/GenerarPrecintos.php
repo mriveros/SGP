@@ -60,7 +60,7 @@ $codigo_usuario=$_SESSION['codigo_usuario'];
 			document.getElementById("txtCodigoE").value = codigo;
 		};
                 function generar(codigo){
-                    alert(codigo);
+                   
 			document.getElementById("txtCodigoGenerar").value = codigo;
 		};
 	</script>

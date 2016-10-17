@@ -170,7 +170,7 @@ $codigo_usuario=$_SESSION["codigo_usuario"];
                             <div class="col-md-6">
                                          
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Codigo Camión</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Código Camión</label>
                                             <div class="col-sm-10">
                                             <input type="number" name="txtCodCamionA" class="form-control" id="txtCodCamionA" placeholder="ingrese código camión" required="true"/>
                                             </div>
@@ -247,7 +247,7 @@ $codigo_usuario=$_SESSION["codigo_usuario"];
                                     </div>
                                <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label  class="col-sm-2 control-label" for="input01">Nafta 85 </label>
+                                                    <label  class="col-sm-2 control-label" for="input01">Nafta 85/86 </label>
                                                     <div class="col-sm-10">
                                                      <input type="number" name="txtNafta85" class="form-control" id="txtNafta85"/>
                                                     </div>
@@ -255,20 +255,12 @@ $codigo_usuario=$_SESSION["codigo_usuario"];
                                     </div>
                             </div>
                             <div class="row">
-                                    <div class="col-md-4">
-
-                                                <div class="form-group">
-                                                    <label  class="col-sm-2 control-label" for="input01">Nafta 90</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="number" name="txtNafta90A" class="form-control" id="txtNafta90A"/>
-                                                    </div>
-                                                </div>
-                                    </div>
+                                    
 
 
                                     <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label  class="col-sm-2 control-label" for="input01">Nafta 95 </label>
+                                                    <label  class="col-sm-2 control-label" for="input01">Nafta 95/96 </label>
                                                     <div class="col-sm-10">
                                                      <input type="number" name="txtNafta95A" class="form-control" id="txtNafta95A"/>
                                                     </div>
@@ -279,6 +271,14 @@ $codigo_usuario=$_SESSION["codigo_usuario"];
                                                     <label  class="col-sm-2 control-label" for="input01">Kerosene </label>
                                                     <div class="col-sm-10">
                                                      <input type="number" name="txtKerosene" class="form-control" id="txtKerosene"/>
+                                                    </div>
+                                                </div>
+                                </div>
+                                <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label  class="col-sm-2 control-label" for="input01">Fuel Oil </label>
+                                                    <div class="col-sm-10">
+                                                     <input type="number" name="txtFueloil" class="form-control" id="txtFueloil"/>
                                                     </div>
                                                 </div>
                                 </div>
@@ -303,26 +303,8 @@ $codigo_usuario=$_SESSION["codigo_usuario"];
                                                     </div>
                                                 </div>
                                     </div>
-                               <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label  class="col-sm-2 control-label" for="input01">Fuel Oil </label>
-                                                    <div class="col-sm-10">
-                                                     <input type="number" name="txtFueloil" class="form-control" id="txtFueloil"/>
-                                                    </div>
-                                                </div>
-                                </div>
+                               
                             </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-
-                                                <div class="form-group">
-                                                    <label  class="col-sm-2 control-label" for="input01">Alcohol</label>
-                                                    <div class="col-sm-10">
-                                                    <input type="number" name="txtAlcoholA" class="form-control" id="txtAlcoholA"/>
-                                                    </div>
-                                                </div>
-                                    </div>
-                                </div>
                             
                                 <div class="row">
                                     <div class="col-lg-12">

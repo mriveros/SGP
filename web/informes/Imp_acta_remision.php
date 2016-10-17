@@ -41,12 +41,13 @@ function Header()
 	$this->Line(200,40,10,40);//largor,ubicacion derecha,inicio,ubicacion izquierda
     //------------------------RECIBIMOS LOS VALORES DE GET-----------
     
-   if  (empty($_POST['txtPrecinto'])){$nro_precinto=0;}else{$nro_precinto=$_POST['txtPrecinto'];}
+   if  (empty($_POST['txtRemision'])){$nro_remision=0;}else{$nro_remision=$_POST['txtRemision'];}
     
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
     $consulta=pg_exec($conectate,"select pre.prec_cod,pre.prec_nrorem,pre.prec_nrobib,pues.pues_des,pre.prec_fecha,em.em_nom,pre.cam_cod,
-        pre.prec_destino,pre.prec_cantprecinto, trunc(pre.prec_gasoil) as prec_gasoil ,
+        pre.prec_destino,pre.prec_cantprecinto,
+        trunc(pre.prec_gasoil) as prec_gasoil ,
         trunc(pre.prec_alconafta) as prec_alconafta ,
         trunc(pre.prec_nafta85) as prec_nafta85,
         trunc(pre.prec_nafta95) as prec_nafta95,
@@ -56,13 +57,12 @@ function Header()
 	trunc(pre.prec_fueloil) as prec_fueloil,
         pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
         preci.pre_nom ||' ' ||preci.pre_ape as precintador,enc.en_nom ||' ' ||enc.en_ape as encargado
-        from precintado pre, emblemas em, puestos pues, encargado enc,precintador preci,precintado_detalle predet
+        from precintado pre, emblemas em, puestos pues, encargado enc,precintador preci
         where pre.pues_cod=pues.pues_cod
         and pre.em_cod=em.em_cod
         and pre.enc_cod=enc.en_cod
         and pre.preci_cod=preci.pre_cod
-        and pre.prec_cod=predet.prec_cod
-	and predet.pre_nro=$nro_precinto");
+        and pre.prec_nrorem='$nro_remision'");
     $row1 = pg_fetch_array($consulta);
     $puesto=$row1['pues_des'];
     $fecha=$row1['prec_fecha'];
@@ -87,6 +87,7 @@ function Header()
     $nro_bibliorato=$row1['prec_nrobib'];
     
      //Obtener color precintado--------------------------------------------------
+   //Obtener color precintado--------------------------------------------------
     $consulta=pg_exec($conectate,"select max(col.col_des)as color 
         from precintado prec, precinto pre,color col,remisiones rem, entrega en,precintado_detalle predet
         where rem.rem_cod=en.rem_cod
@@ -94,7 +95,7 @@ function Header()
 	and en.en_cod=pre.en_cod
 	and prec.prec_cod=predet.prec_cod
 	and pre.pre_cod=predet.pre_cod
-        and pre.pre_nro=$nro_precinto");
+        and prec.prec_nrorem='$nro_remision'");
     $row1 = pg_fetch_array($consulta);
     $color=$row1['color'];
     //table header CABECERA        
@@ -151,7 +152,7 @@ function Header()
     $this->text(10,105  ,'Precintos aplicados al camion cisterna. Cantidad: '.$cantidad);
     $this->text(105,105,'('.$letra_cantidad.')');
     $this->text(145,105,'Color: '.$color);
-    $this->text(165,83,$color);
+  
     $this->Line(160,40,10,40);//largor,ubicacion derecha,inicio,ubicacion izquierda
     $this->text(10,180,'------------------------------ ');
     $this->text(80,180,'------------------------------ ');
@@ -169,12 +170,12 @@ function Header()
 $pdf= new PDF();//'P'=vertical o 'L'=horizontal,'mm','A4' o 'Legal'
 $pdf->AddPage();
 //------------------------RECIBIMOS LOS VALORES DE GET-----------
-if  (empty($_POST['txtPrecinto'])){$nro_precinto=0;}else{$nro_precinto=$_POST['txtPrecinto'];}
+if  (empty($_POST['txtRemision'])){$nro_remision=0;}else{$nro_remision=$_POST['txtRemision'];}
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
  $consulta=pg_exec($conectate,"select pre.prec_cod from precintado pre,precintado_detalle predet
-where pre.prec_cod=predet.prec_cod and predet.pre_nro=$nro_precinto");
+where pre.prec_cod=predet.prec_cod and pre.prec_nrorem='$nro_remision'");
 $row1 = pg_fetch_array($consulta);
 $codigo_precintado=$row1['prec_cod'];
 $consulta=pg_exec($conectate,"select pre_nro from precintado_detalle where prec_cod=$codigo_precintado");

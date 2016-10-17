@@ -49,7 +49,7 @@ function Header()
     //table header CABECERA        
     $this->SetFont('Arial','B',12);
     $this->SetTitle('SGP-Entregas');
-    $this->text(65,50,'SISTEMA CONTROL DE PRECINTADOS');
+    $this->text(65,50,'SISTEMA GESTION DE PRECINTADOS');
     $this->text(55,60,'Entrega de Precintos a Puestos de Precintados'); 
 }
 }
@@ -71,7 +71,7 @@ $pdf->SetFont('Arial','',10);
 
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres")or die ('Error al conectar a la base de datos');
-$consulta=pg_exec($conectate,"select en.en_des,en.en_cantidad,en.en_nro_inicio,en.en_nro_fin,enc.en_nom||' '||enc.en_ape as encargado,rem.rem_des,col.col_des 
+$consulta=pg_exec($conectate,"select en.en_des,pues.pues_des,en.en_cantidad,en.en_nro_inicio,en.en_nro_fin,enc.en_nom||' '||enc.en_ape as encargado,rem.rem_des,col.col_des 
 from entrega en, puestos pues,encargado enc,remisiones rem,color col 
 where en.pues_cod=pues.pues_cod 
 and en.enc_cod=enc.en_cod 
@@ -87,7 +87,10 @@ $nro_fin=$row1['en_nro_fin'];
 $encargado=$row1['encargado'];
 $remision=$row1['rem_des'];
 $color=$row1['col_des'];
+$puesto=$row1['pues_des'];
+
 $pdf->SetFont('Arial','B',10);
+$pdf->text(15,70,utf8_decode('Puesto:'));
 $pdf->text(15,80,utf8_decode('Descripción:'));
 $pdf->text(15,90,utf8_decode('Cantidad:'));
 $pdf->text(80,90,utf8_decode('Desde:'));   
@@ -101,6 +104,7 @@ $pdf->text(130,120,'.............................................');
 $pdf->text(137,125,'Firma Receptor'); 
 
 $pdf->SetFont('Arial','',10);
+$pdf->text(40,70,utf8_decode($puesto));
 $pdf->text(40,80,utf8_decode($descripcion));
 $pdf->text(35,90,$cantidad);
 $pdf->text(95,90,utf8_decode($nro_inicio));

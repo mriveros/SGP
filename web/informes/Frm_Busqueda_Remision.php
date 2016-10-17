@@ -89,14 +89,14 @@ $codusuario=  $_SESSION["codigo_usuario"];
             
 				<!-- Modal Body -->
 				<div class="modal-body">
-                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="Imp_acta_precinto.php" method="post" role="form">
+                                    <form  autocomplete="off" class="form-horizontal" name="agregarform" action="Imp_acta_remision.php" method="post" role="form">
 						
                                        
                                         
                                         <div class="form-group">
-                                            <label  class="col-sm-2 control-label" for="input01">Nro Precinto</label>
+                                            <label  class="col-sm-2 control-label" for="input01">Nro Remisión</label>
                                             <div class="col-sm-10">
-                                            <input type="number" name="txtPrecinto" class="form-control" id="txtPrecinto" required />
+                                            <input type="number" name="txtRemision" class="form-control" id="txtRemision" required />
                                             </div>
 					</div>
                                         

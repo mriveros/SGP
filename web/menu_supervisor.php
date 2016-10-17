@@ -44,7 +44,7 @@
                 </button>
                 <img src="http://<?php echo $ruta;?>/SGP/web/img/head.png" width=500 height=80 alt="Obra de K. Haring"> 
             </div>
-            <center><a class="navbar-brand" href="#"><h2>Sistema de Gestion de Precintos - SGP INTN</h2></a></center>
+            <center><a class="navbar-brand" href="#"><h2>Sistema de Gestión de Precintado - SGP INTN</h2></a></center>
             <!-- /.navbar-header -->
             <br><br>
             <ul class="nav navbar-top-links navbar-right">
@@ -140,7 +140,7 @@
                         </li>
 
                         <li>
-                            <a href="#"><i class="fa  fa-automobile "></i>  REGISTRAR PRECINTOS<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa  fa-automobile "></i>  PRECINTADO<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                  
@@ -158,6 +158,7 @@
                                 <li>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Imp_registro_impresion_matricial.php">Imprimir Registro</a>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Busqueda_Precinto.php">Impresión/Búsqueda por Precinto</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Busqueda_Remision.php">Impresión/Búsqueda por Remisión</a>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Emblemas.php">Resumen por Emblemas</a> 
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Puestos.php">Resumen por Puestos</a> 
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Camion.php">Resumen/Búsqueda por Código Camión</a> 

@@ -23,13 +23,11 @@
           if  (empty($_POST['txtGasoilA'])){$gasoil=0;}else{$gasoil=$_POST['txtGasoilA'];}
           if  (empty($_POST['txtAlconaftaA'])){$alconafta=0;}else{$alconafta=$_POST['txtAlconaftaA'];}
           if  (empty($_POST['txtNafta85'])){$nafta85=0;}else{$nafta85=$_POST['txtNafta85'];}
-          if  (empty($_POST['txtNafta90A'])){$nafta90=0;}else{$nafta90=$_POST['txtNafta90A'];}
           if  (empty($_POST['txtNafta95A'])){$nafta95=0;}else{$nafta95=$_POST['txtNafta95A'];}
           if  (empty($_POST['txtKerosene'])){$kerosene=0;}else{$kerosene=$_POST['txtKerosene'];}
           if  (empty($_POST['txtTurboA'])){$turbo=0;}else{$turbo=$_POST['txtTurboA'];}
           if  (empty($_POST['txtAvigasA'])){$avigas=0;}else{$avigas=$_POST['txtAvigasA'];}
           if  (empty($_POST['txtFueloil'])){$fueloil=0;}else{$fueloil=$_POST['txtFueloil'];}
-          if  (empty($_POST['txtAlcoholA'])){$alcohol=0;}else{$alcohol=$_POST['txtAlcoholA'];}
           
           //Datos de Detalle
            if  (empty($_POST['txtPrecinto1'])){$precinto1=0;}else{$precinto1=$_POST['txtPrecinto1'];}
@@ -66,13 +64,13 @@
     $query = "INSERT INTO precintado(prec_nrorem, prec_nrobib, pues_cod, em_cod, cam_cod, 
             prec_gasoil, prec_alconafta, prec_nafta85, prec_nafta95, prec_kerosene, 
             prec_turbo, prec_avigas, prec_fueloil,
-            enc_cod, prec_transportista, prec_fecha, prec_alcohol, 
-            prec_nafta90, cod_usuario, pre_estado,prec_destino,preci_cod)
+            enc_cod, prec_transportista, prec_fecha, 
+            cod_usuario, pre_estado,prec_destino,preci_cod)
     VALUES ($remision, $bibliorato, $puesto_usuario,$emblema, $codigo_camion, 
             $gasoil, $alconafta, $nafta85, $nafta95, $kerosene,
             $turbo, $avigas, $fueloil,
-            $codigo_encargado,'$transportista','$fecha', $alcohol,
-            $nafta90, $codusuario,'t','$destino',$codigo_precintador);";
+            $codigo_encargado,'$transportista','$fecha',
+             $codusuario,'t','$destino',$codigo_precintador);";
     $ejecucion = pg_query($query)or die('Error al realizar la carga'.$query);
        
     

@@ -16,7 +16,7 @@ $catego=  $_SESSION["categoria_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SGP INTN-Remisiones</title>
+    <title>SGP INTN-Lote Precintos</title>
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -80,7 +80,7 @@ $catego=  $_SESSION["categoria_usuario"];
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                      <h1 class="page-header">Remisiones - <small>SGP INTN</small></h1>
+                      <h1 class="page-header">Lotes - <small>SGP INTN</small></h1>
                 </div>	
             </div>
             <!-- /.row -->
@@ -88,7 +88,7 @@ $catego=  $_SESSION["categoria_usuario"];
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Listado de Remisiones
+                            Listado de Lotes de Precintos
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -97,7 +97,7 @@ $catego=  $_SESSION["categoria_usuario"];
                                     <thead>
                                         <tr class="success">
                                             <th style='display:none'>Codigo</th>
-                                            <th>Remision</th>
+                                            <th>Lote</th>
                                             <th>Proveedor</th>
                                             <th>Color</th>
                                             <th>Cantidad</th>
