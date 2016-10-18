@@ -138,7 +138,7 @@
                         <li>
                             <a href="http://<?php echo $ruta;?>/SGP/web/menu_usuario.php" value="Load new document" onclick="location.reload();"><i class="fa  fa-tasks"></i> Menu Principal</a>
                         </li>
-                       
+			
                         <li>
                             <a href="#"><i class="fa  fa-automobile "></i>  PRECINTADO<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

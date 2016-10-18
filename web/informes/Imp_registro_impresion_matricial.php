@@ -24,7 +24,7 @@ function Header()
    // Select Arial bold 15
    //------------------------RECIBIMOS LOS VALORES DE GET-----------
     
-    //$codigo_precintado=obtenerUltimo('precintado','prec_cod');
+ 
     
     $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
@@ -42,11 +42,11 @@ function Header()
         trunc(pre.prec_avigas) as prec_avigas,
 	trunc(pre.prec_fueloil) as prec_fueloil,
         pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
-        preci.pre_nom ||' ' ||preci.pre_ape as precintador,enc.en_nom ||' ' ||enc.en_ape as encargado
-        from precintado pre, emblemas em, puestos pues, encargado enc,precintador preci
+        preci.pre_nom ||' ' ||preci.pre_ape as precintador,usu.usu_nom ||' ' ||usu.usu_ape as encargado
+        from precintado pre, emblemas em, puestos pues, precintador preci,usuarios usu
         where pre.pues_cod=pues.pues_cod
         and pre.em_cod=em.em_cod
-        and pre.enc_cod=enc.en_cod
+        and pre.cod_usuario=usu.usu_cod
         and pre.preci_cod=preci.pre_cod
         and pre.prec_cod=$codigo_precintado");
     $row1 = pg_fetch_array($consulta);

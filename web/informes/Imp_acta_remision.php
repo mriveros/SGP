@@ -56,11 +56,11 @@ function Header()
         trunc(pre.prec_avigas) as prec_avigas,
 	trunc(pre.prec_fueloil) as prec_fueloil,
         pre.prec_transportista,pre.prec_destino,pre.prec_cantprecinto,
-        preci.pre_nom ||' ' ||preci.pre_ape as precintador,enc.en_nom ||' ' ||enc.en_ape as encargado
-        from precintado pre, emblemas em, puestos pues, encargado enc,precintador preci
+        preci.pre_nom ||' ' ||preci.pre_ape as precintador,usu.usu_nom ||' ' ||usu.usu_ape as encargado
+        from precintado pre, emblemas em, puestos pues, usuarios usu,precintador preci
         where pre.pues_cod=pues.pues_cod
         and pre.em_cod=em.em_cod
-        and pre.enc_cod=enc.en_cod
+        and pre.cod_usuario=usu.usu_cod
         and pre.preci_cod=preci.pre_cod
         and pre.prec_nrorem='$nro_remision'");
     $row1 = pg_fetch_array($consulta);
