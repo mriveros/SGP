@@ -255,15 +255,15 @@
      $precio1=$row1[0];
      $precio2=$row1[1];
      $precio3=$row1[2];
-     if ($cantidad_precintos <= 7)
+     if ($cantidad_precintos <= 6)
      {
         $query = "update precintado set prec_precio=$precio1 where prec_cod=$codigo_precintado";
         pg_query($query)or die('Error al realizar la carga. Error: '.$query);
-     }else if($cantidad_precintos > 7 and $cantidad_precintos <= 12)
+     }else if($cantidad_precintos > 6 and $cantidad_precintos <= 10)
      {
         $query = "update precintado set prec_precio=$precio2 where prec_cod=$codigo_precintado";
         pg_query($query)or die('Error al realizar la carga. Error: '.$query);  
-     }else if ( $cantidad_precintos > 12)
+     }else if ( $cantidad_precintos > 10)
      {
         $query = "update precintado set prec_precio=$precio3 where prec_cod=$codigo_precintado";
         pg_query($query)or die('Error al realizar la carga. Error: '.$query); 

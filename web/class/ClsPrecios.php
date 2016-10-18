@@ -50,14 +50,14 @@ conexionlocal();
                 pg_query($query)or die('Error al realizar la carga. Error: '.$query);
                 
                 //actualizamos precintados con precio 1
-                $query = "update precintado set prec_precio=$precio1A where prec_cantprecinto <= 7 and prec_fecha >= '$fechaA'";
+                $query = "update precintado set prec_precio=$precio1A where prec_cantprecinto <= 6 and prec_fecha >= '$fechaA'";
                 pg_query($query)or die('Error al realizar la carga'.$query);
                 //actualizamos precintados con precio 2
-                $query = "update precintado set prec_precio=$precio2A where prec_cantprecinto > 7 and prec_cantprecinto <= 12 and prec_fecha >= '$fechaA'";
+                $query = "update precintado set prec_precio=$precio2A where prec_cantprecinto > 6 and prec_cantprecinto <= 10 and prec_fecha >= '$fechaA'";
                 pg_query($query)or die('Error al realizar la carga'.$query);
                 
                 //actualizamos precintados con precio 3
-                $query = "update precintado set prec_precio=$precio3A where prec_cantprecinto > 12 and prec_fecha >= '$fechaA'";
+                $query = "update precintado set prec_precio=$precio3A where prec_cantprecinto > 10 and prec_fecha >= '$fechaA'";
                 pg_query($query)or die('Error al realizar la carga'.$query);
                 
                 
