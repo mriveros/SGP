@@ -145,6 +145,7 @@
                                 <li>
                                  
                                     <a href="http://<?php echo $ruta;?>/SGP/web/registrar_precintos/registrar_precintos.php">Precintado de Camiones</a>
+                                     <a href="http://<?php echo $ruta;?>/SGP/web/registrar_precintos/anular_remision.php">Anular Remisión</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
