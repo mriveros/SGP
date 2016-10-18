@@ -116,9 +116,9 @@ $catego=  $_SESSION["categoria_usuario"];
                                         <tr class="success">
                                             <th style='display:none'>Codigo</th>
                                             <th>Descripción</th>
-                                            <th>Precio 1/7</th>
-                                            <th>Precio 8/12</th>
-                                            <th>Precio 13/21</th>
+                                            <th>Precio 1/6</th>
+                                            <th>Precio 7/10</th>
+                                            <th>Precio 11/21</th>
                                             <th>Fecha</th>
                                             <th>Estado</th>
                                             <th>Accion</th>
