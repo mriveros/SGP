@@ -4,9 +4,9 @@
  * Año: 2016
 * Sistema de Gestion de Precintos ONM-INTN
  */
-session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 $codusuario=  $_SESSION["codigo_usuario"];
- $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+ $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
     include '../funciones.php';
     conexionlocal();
     

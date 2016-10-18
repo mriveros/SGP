@@ -4,12 +4,12 @@
  * Año: 2016
 * Sistema de Gestion de Precintos ONM-INTN
  */
-session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+session_start();$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
 $codusuario=  $_SESSION["codigo_usuario"];
-$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+$ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
     include '../funciones.php';
     conexionlocal();
-     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."";
+     $ruta=$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT']."/web";
     //Datos del Form Agregar
     if  (empty($_POST['txtNombreA'])){$nombreA='';}else{ $nombreA = $_POST['txtNombreA'];}
     if  (empty($_POST['txtApellidoA'])){$apellidoA='';}else{ $apellidoA= $_POST['txtApellidoA'];}
