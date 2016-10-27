@@ -251,6 +251,7 @@
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Imp_registro_impresion_matricial.php">Imprimir Registro</a>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Busqueda_Precinto.php">Impresión/Búsqueda por Precinto</a>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Busqueda_Remision.php">Impresión/Búsqueda por Remisión</a>
+                                    <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Busqueda_Remision_matricial.php">Reimpresión de Remisiones</a>
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Emblemas.php">Resumen por Emblemas</a> 
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Puestos.php">Resumen por Puestos</a> 
                                     <a href="http://<?php echo $ruta;?>/SGP/web/informes/Frm_Resumen_Camion.php">Resumen/Búsqueda por Código Camión</a> 

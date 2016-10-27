@@ -174,7 +174,7 @@ if  (empty($_POST['txtRemision'])){$nro_remision=0;}else{$nro_remision=$_POST['t
 //------------------------QUERY and data cargue y se reciben los datos-----------
 $conectate=pg_connect("host=localhost port=5432 dbname=SGP user=postgres password=postgres"
                     . "")or die ('Error al conectar a la base de datos');
- $consulta=pg_exec($conectate,"select pre.prec_cod from precintado pre,precintado_detalle predet
+$consulta=pg_exec($conectate,"select pre.prec_cod from precintado pre,precintado_detalle predet
 where pre.prec_cod=predet.prec_cod and pre.prec_nrorem='$nro_remision'");
 $row1 = pg_fetch_array($consulta);
 $codigo_precintado=$row1['prec_cod'];
